@@ -2,7 +2,7 @@ const {chromium}=require('C:/Users/HP/.cache/codex-runtimes/codex-primary-runtim
 const assert=require('node:assert/strict');
 (async()=>{
 const browser=await chromium.launch({executablePath:'C:/Program Files/Google/Chrome/Application/chrome.exe',headless:true,args:['--enable-webgl','--ignore-gpu-blocklist','--use-angle=swiftshader']});
-const page=await browser.newPage({viewport:{width:1440,height:1100}}),errors=[];page.on('pageerror',e=>errors.push(e.message));await page.goto('http://localhost:4173');await page.waitForFunction(()=>window.modelExplorer);await page.waitForTimeout(1200);
+const page=await browser.newPage({viewport:{width:1440,height:1100}}),errors=[];page.on('pageerror',e=>errors.push(e.message));await page.goto('http://localhost:4173/explorer.html?module=thung-phu');await page.waitForFunction(()=>window.modelExplorer);await page.waitForTimeout(1200);
 const state=()=>page.evaluate(()=>window.modelExplorer.getState());
 await page.screenshot({path:'qa/final-desktop.png',fullPage:true});
 const box=await page.locator('#viewport').boundingBox();await page.mouse.click(box.x+box.width*.51,box.y+box.height*.47);assert.notEqual((await state()).selected,null,'raycast selection');
@@ -14,6 +14,7 @@ const downloadPromise=page.waitForEvent('download');await page.locator('#capture
 await page.locator('#theme').click();await page.waitForTimeout(500);await page.screenshot({path:'qa/final-dark.png'});
 await page.locator('#theme').click();await page.locator('#reset').click();await page.locator('#edges').click();assert.equal((await state()).edges,false);await page.locator('#reset').click();
 await page.setViewportSize({width:390,height:844});await page.waitForTimeout(1400);assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);await page.screenshot({path:'qa/final-mobile.png',fullPage:true});
-const reduced=await browser.newPage({viewport:{width:390,height:844},reducedMotion:'reduce'});await reduced.goto('http://localhost:4173');await reduced.waitForFunction(()=>window.modelExplorer);await reduced.locator('#play').click();await reduced.waitForFunction(()=>window.modelExplorer.getState().explode===1);await reduced.screenshot({path:'qa/final-mobile-exploded.png',fullPage:true});
+const reduced=await browser.newPage({viewport:{width:390,height:844},reducedMotion:'reduce'});await reduced.goto('http://localhost:4173/explorer.html?module=thung-phu');await reduced.waitForFunction(()=>window.modelExplorer);await reduced.locator('#play').click();await reduced.waitForFunction(()=>window.modelExplorer.getState().explode===1);await reduced.screenshot({path:'qa/final-mobile-exploded.png',fullPage:true});
 assert.deepEqual(errors,[]);console.log('PASS: canvas picking, isolation, shell visibility, reset, views, explode completion, PNG download, edges, mobile overflow, reduced motion; no page errors.');await browser.close();
 })().catch(e=>{console.error(e);process.exit(1)});
+

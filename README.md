@@ -1,10 +1,22 @@
-# Thùng phụ · Engineering Explorer
+# Hệ thống xe thu gom rác · Engineering Explorer
 
-Trang web khám phá mô hình thực tế từ `ban test thung phu.STEP` của người dùng. Phong cách trình bày tham khảo [Anatomy](https://github.com/wheresryan22/anatomy); phần dựng hình dùng Three.js để giữ nguyên hình học CAD.
+Trang Home có bốn mục: **Thùng phụ**, **Thùng chính**, **Thân xe**, **Cặp nâng thùng rác**. Mỗi thẻ có ảnh 3D, mô tả và đường dẫn vào trình xem 3D riêng. Phong cách trình bày tham khảo [Anatomy](https://github.com/wheresryan22/anatomy).
+
+Thùng phụ dùng mô hình thực tế từ `ban test thung phu.STEP`. Ba cụm còn lại có mô hình minh họa được ghi rõ **Chờ mô hình**; chúng chưa thể hiện CAD, kích thước, động học hay kết cấu chế tạo của người dùng.
 
 ## Mở trên máy
 
 Chạy `node scripts/serve.mjs` trong thư mục này, rồi mở http://localhost:4173. File `dist/index.html` cần được phục vụ qua HTTP (các trình duyệt chặn việc tải module/dữ liệu bằng file://).
+
+Home: `/`. Trình xem: `/explorer.html?module=thung-phu`, `thung-chinh`, `than-xe` hoặc `cap-nang`. Trình xem có liên kết về Home và menu đổi cụm.
+
+Vercel dùng thư mục `dist`, preset Other, bỏ qua build và cài đặt. `vercel.json` lưu sẵn cấu hình này.
+
+## Bổ sung mô hình sau này
+
+Danh mục nằm tại `dist/catalog.js`. Mỗi mục chỉ định tên, mô tả, ảnh `preview`, file hình học `meta` và `binary`, cùng trạng thái `ready`. Khi có dữ liệu thật, thay đường dẫn dữ liệu và ảnh của mục đó, đặt `ready: true`; Home và trình xem dùng chung cấu hình.
+
+`scripts/build-demos.mjs` tạo lại ba mô hình minh họa từ các khối cơ khí bằng Three.js. Các file trong `dist/assets/demo` chỉ dùng để chờ thay bằng dữ liệu CAD thực tế. Hình thu nhỏ trong `dist/assets/previews` được chụp từ các trình xem tương ứng.
 
 ## Chức năng
 
