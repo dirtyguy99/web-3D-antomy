@@ -1,6 +1,9 @@
 // Each entry owns its route, description, preview and model data.
 // Set ready:true and replace the assets when the user's CAD model is supplied.
 export const modules = [
+ {id:'tong-quan',number:'00',title:'Tổng quan về xe',subtitle:'Toàn xe & liên kết các cụm',ready:false,overview:true,camera:[6,3.8,7],preview:'./assets/previews/tong-quan.png',meta:'./assets/demo/tong-quan.json',binary:'./assets/demo/tong-quan.bin',
+  description:'Quan sát chiếc xe khi thân xe, thùng chính, thùng phụ và cặp nâng thùng rác cùng nằm trong một mô hình tổng thể. Bản hiện tại minh họa vị trí tương đối của các cụm; mô hình lắp ráp thực tế sẽ được bổ sung khi bạn cung cấp đầy đủ dữ liệu.',
+  details:['Tổng thể gồm đủ bốn cụm thành phần','Chọn một bộ phận để mở trang của cụm tương ứng','Chờ bản lắp tổng thể của xe'],tags:['Thân xe','Thùng chính & thùng phụ','Cặp nâng thùng rác'],previewLabel:'MINH HỌA LẮP RÁP',status:'Chờ mô hình',action:'Khám phá toàn xe'},
  {id:'thung-phu',number:'01',title:'Thùng phụ',subtitle:'Tiếp nhận & cơ cấu ép',ready:true,preview:'./assets/previews/thung-phu.png',meta:'./assets/model.json',binary:'./assets/model.bin',
   description:'Khám phá cụm thùng phụ từ bản lắp SolidWorks của bạn. Quan sát vỏ và máng thùng, bàn ép, bàn cào, hệ xi lanh, nắp thùng và các ray trượt tại vị trí lắp ráp.',
   details:['122 chi tiết từ mô hình STEP','Chọn từng part, ẩn vỏ và xem riêng chi tiết','Bung lắp ráp để quan sát kết cấu'],tags:['Vỏ & máng thùng','Bàn ép / bàn cào','Xi lanh & ray trượt'],previewLabel:'MÔ HÌNH CỦA BẠN',status:'Đã có mô hình',action:'Khám phá 3D'},

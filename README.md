@@ -1,14 +1,14 @@
 # Hệ thống xe thu gom rác · Engineering Explorer
 
-Trang Home có bốn mục: **Thùng phụ**, **Thùng chính**, **Thân xe**, **Cặp nâng thùng rác**. Mỗi thẻ có ảnh 3D, mô tả và đường dẫn vào trình xem 3D riêng. Phong cách trình bày tham khảo [Anatomy](https://github.com/wheresryan22/anatomy).
+Trang Home có năm mục: **Tổng quan về xe**, **Thùng phụ**, **Thùng chính**, **Thân xe**, **Cặp nâng thùng rác**. Mục tổng quan nổi bật ở đầu bộ sưu tập; mỗi thẻ có ảnh 3D, mô tả và đường dẫn vào trình xem riêng. Phong cách trình bày tham khảo [Anatomy](https://github.com/wheresryan22/anatomy).
 
-Thùng phụ dùng mô hình thực tế từ `ban test thung phu.STEP`. Ba cụm còn lại có mô hình minh họa được ghi rõ **Chờ mô hình**; chúng chưa thể hiện CAD, kích thước, động học hay kết cấu chế tạo của người dùng.
+Thùng phụ dùng mô hình thực tế từ `ban test thung phu.STEP`. Bốn mục còn lại có mô hình minh họa được ghi rõ **Chờ mô hình**. Tổng quan bố trí các hình học tham khảo trong một hình xe; vị trí, tỷ lệ và liên kết là minh họa, đang chờ bản lắp CAD toàn xe để thay thế.
 
 ## Mở trên máy
 
 Chạy `node scripts/serve.mjs` trong thư mục này, rồi mở http://localhost:4173. File `dist/index.html` cần được phục vụ qua HTTP (các trình duyệt chặn việc tải module/dữ liệu bằng file://).
 
-Home: `/`. Trình xem: `/explorer.html?module=thung-phu`, `thung-chinh`, `than-xe` hoặc `cap-nang`. Trình xem có liên kết về Home và menu đổi cụm.
+Home: `/`. Trình xem: `/explorer.html?module=tong-quan`, `thung-phu`, `thung-chinh`, `than-xe` hoặc `cap-nang`. Tất cả các trang có thanh chuyển nhanh, menu đổi mục và các liên kết trước/sau theo vòng. Trong tổng quan, chọn chi tiết rồi bấm **Mở [tên cụm]** để vào trang riêng; các trang cụm có **Xem trên toàn xe** để quay lại tổng quan. Giao diện sáng/tối được giữ khi chuyển trang trong cùng phiên trình duyệt.
 
 Vercel dùng thư mục `dist`, preset Other, bỏ qua build và cài đặt. `vercel.json` lưu sẵn cấu hình này.
 
@@ -17,6 +17,8 @@ Vercel dùng thư mục `dist`, preset Other, bỏ qua build và cài đặt. `v
 Danh mục nằm tại `dist/catalog.js`. Mỗi mục chỉ định tên, mô tả, ảnh `preview`, file hình học `meta` và `binary`, cùng trạng thái `ready`. Khi có dữ liệu thật, thay đường dẫn dữ liệu và ảnh của mục đó, đặt `ready: true`; Home và trình xem dùng chung cấu hình.
 
 `scripts/build-demos.mjs` tạo lại ba mô hình minh họa từ các khối cơ khí bằng Three.js. Các file trong `dist/assets/demo` chỉ dùng để chờ thay bằng dữ liệu CAD thực tế. Hình thu nhỏ trong `dist/assets/previews` được chụp từ các trình xem tương ứng.
+
+`scripts/build-overview.mjs` tạo lại hình minh họa toàn xe, gom các bộ phận thành bốn nhóm có thuộc tính `component` liên kết tới từng trang. Mục tổng quan vẫn đặt `ready: false` cho đến khi có bản lắp toàn xe được xác nhận.
 
 ## Chức năng
 
