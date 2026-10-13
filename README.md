@@ -2,7 +2,9 @@
 
 Trang Home có năm mục: **Tổng quan về xe**, **Thùng phụ**, **Thùng chính**, **Thân xe**, **Cặp nâng thùng rác**. Mục tổng quan nổi bật ở đầu bộ sưu tập; mỗi thẻ có ảnh 3D, mô tả và đường dẫn vào trình xem riêng. Phong cách trình bày tham khảo [Anatomy](https://github.com/wheresryan22/anatomy).
 
-Thùng phụ dùng mô hình thực tế từ `ban test thung phu.STEP`. Bốn mục còn lại có mô hình minh họa được ghi rõ **Chờ mô hình**. Tổng quan bố trí các hình học tham khảo trong một hình xe; vị trí, tỷ lệ và liên kết là minh họa, đang chờ bản lắp CAD toàn xe để thay thế.
+Thùng phụ và thùng chính dùng mô hình thực tế của người dùng. Thùng chính được xuất từ `THUNG CHINH.STEP.SLDASM` sang STEP và chia lưới, gồm **74 khối hình học thuộc 12 part đang bật**, phân thành 6 nhóm. Các khối trong part đa thân vẫn được đặt đúng vị trí gốc và gắn với tên part tương ứng. `01_09_Tru ban xa` đang suppressed trong cấu hình nguồn, nên chưa có hình học hiển thị; trang ghi rõ trạng thái này.
+
+Tổng quan, thân xe và cặp nâng vẫn ghi **Chờ mô hình**. Tổng quan dùng hình học của hai cụm thùng thật cùng các hình minh họa khác; vị trí, tỷ lệ và liên kết của toàn xe là minh họa, đang chờ bản lắp tổng thể để thay thế.
 
 ## Mở trên máy
 
@@ -19,6 +21,12 @@ Danh mục nằm tại `dist/catalog.js`. Mỗi mục chỉ định tên, mô t�
 `scripts/build-demos.mjs` tạo lại ba mô hình minh họa từ các khối cơ khí bằng Three.js. Các file trong `dist/assets/demo` chỉ dùng để chờ thay bằng dữ liệu CAD thực tế. Hình thu nhỏ trong `dist/assets/previews` được chụp từ các trình xem tương ứng.
 
 `scripts/build-overview.mjs` tạo lại hình minh họa toàn xe, gom các bộ phận thành bốn nhóm có thuộc tính `component` liên kết tới từng trang. Mục tổng quan vẫn đặt `ready: false` cho đến khi có bản lắp toàn xe được xác nhận.
+
+## Cập nhật CAD thùng chính
+
+Trên máy có SolidWorks, chạy `scripts/export-solidworks.ps1` bằng Windows PowerShell 5.1 với `-SourcePath` trỏ tới assembly và `-StepPath` trỏ tới file STEP mới. Script mở chỉ đọc khi cần, xuất theo cấu hình hiện tại, lưu thông tin part vào `.cache/thung-chinh-components.json` và kiểm tra assembly gốc không bị thay đổi. Nó không ghi đè STEP đã có và không đóng các tài liệu đã mở trước đó.
+
+Sau đó chạy `node scripts/inspect-cad.mjs <STEP> thung-chinh` và `node scripts/convert-main.mjs <STEP>`. File khối 3D của thùng chính nằm ở `dist/assets/cad/thung-chinh.json` và `.bin`. `convert-main.mjs` gắn tên part dựa trên tên cụm trong STEP và hộp bao của các component SolidWorks; không có part đang bật nào bị bỏ qua. Chạy lại `node scripts/build-overview.mjs` và chụp ảnh xem trước khi cập nhật dữ liệu CAD.
 
 ## Chức năng
 

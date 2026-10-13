@@ -1,0 +1,13 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import crypto from 'node:crypto';
+import occtFactory from 'occt-import-js';
+const [input,slug='cad']=process.argv.slice(2);
+if(!input||!/^[a-z0-9-]+$/.test(slug))throw new Error('Usage: node scripts/inspect-cad.mjs <STEP path> <slug>');
+const content=fs.readFileSync(input),occt=await occtFactory();
+const result=occt.ReadStepFile(content,{linearUnit:'millimeter',linearDeflectionType:'absolute_value',linearDeflection:0.5,angularDeflection:0.25});
+if(!result.success||!result.meshes.length)throw new Error('The STEP file has no readable mesh geometry.');
+const rows=result.meshes.map((mesh,id)=>{const min=[Infinity,Infinity,Infinity],max=[-Infinity,-Infinity,-Infinity];mesh.attributes.position.array.forEach((v,i)=>{min[i%3]=Math.min(min[i%3],v);max[i%3]=Math.max(max[i%3],v)});return {id,name:mesh.name,vertices:mesh.attributes.position.array.length/3,triangles:mesh.index.array.length/3,min,max};});
+const summary={source:path.basename(input),sourceSHA256:crypto.createHash('sha256').update(content).digest('hex'),meshCount:rows.length,root:result.root,rows};
+fs.mkdirSync('.cache',{recursive:true});fs.writeFileSync(`.cache/${slug}-import.json`,JSON.stringify(result));fs.writeFileSync(`.cache/${slug}-summary.json`,JSON.stringify(summary,null,2));
+console.log(JSON.stringify(summary,null,2));

@@ -5,7 +5,7 @@ import * as T from '../dist/vendor/three.module.js';
 // Existing geometry is reused as a visual reference; the full assembly is pending.
 const components=[
  {id:'than-xe',title:'Thân xe',meta:'dist/assets/demo/than-xe.json',bin:'dist/assets/demo/than-xe.bin',scale:[1,1,1],position:[0,0,0],angle:0,explode:[0,-.45,0]},
- {id:'thung-chinh',title:'Thùng chính',meta:'dist/assets/demo/thung-chinh.json',bin:'dist/assets/demo/thung-chinh.bin',scale:[.90,.86,.80],position:[0,.89,.70],angle:0,explode:[0,1.2,0]},
+ {id:'thung-chinh',title:'Thùng chính',meta:'dist/assets/cad/thung-chinh.json',bin:'dist/assets/cad/thung-chinh.bin',scale:[.90,.86,.90],position:[0,.60,.70],angle:Math.PI,explode:[0,1.2,0]},
  {id:'thung-phu',title:'Thùng phụ',meta:'dist/assets/model.json',bin:'dist/assets/model.bin',scale:[.87,.70,.46],position:[0,.70,3.27],angle:Math.PI,explode:[0,.35,1.35]},
  {id:'cap-nang',title:'Cặp nâng thùng rác',meta:'dist/assets/demo/cap-nang.json',bin:'dist/assets/demo/cap-nang.bin',scale:[.84,.84,.84],position:[0,-.48,4.61],angle:Math.PI,explode:[0,.1,2.3]}
 ];

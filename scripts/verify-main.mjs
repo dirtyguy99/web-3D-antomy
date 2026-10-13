@@ -1,0 +1,10 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+const meta=JSON.parse(fs.readFileSync('dist/assets/cad/thung-chinh.json'));
+const bytes=fs.readFileSync('dist/assets/cad/thung-chinh.bin'),buffer=bytes.buffer.slice(bytes.byteOffset,bytes.byteOffset+bytes.byteLength);
+assert.equal(meta.meshCount,74);assert.equal(meta.sourcePartCount,12);assert.equal(meta.groups.reduce((s,g)=>s+g.count,0),74);assert.ok(meta.parts.every(p=>p.bodyCount>0));assert.equal(meta.parts.reduce((s,p)=>s+p.bodyCount,0),74);
+let triangles=0;for(const m of meta.meshes){const pos=new Float32Array(buffer,m.positions.offset,m.positions.count),nor=new Float32Array(buffer,m.normals.offset,m.normals.count),idx=new Uint32Array(buffer,m.indices.offset,m.indices.count);assert.equal(pos.length,nor.length);assert.ok(m.name&&m.label&&m.nativeComponent&&m.nativePart);assert.ok(meta.groups.some(g=>g.id===m.group));for(const v of pos)assert.ok(Number.isFinite(v));for(const v of nor)assert.ok(Number.isFinite(v));for(const i of idx)assert.ok(i<pos.length/3);triangles+=idx.length/3;}
+assert.equal(triangles,meta.triangles);
+let maxError=0;
+if(fs.existsSync('.cache/thung-chinh-import.json')){const raw=JSON.parse(fs.readFileSync('.cache/thung-chinh-import.json'));const center=meta.bounds.min.map((v,i)=>(v+meta.bounds.max[i])/2);for(const m of meta.meshes){const pos=new Float32Array(buffer,m.positions.offset,m.positions.count),idx=new Uint32Array(buffer,m.indices.offset,m.indices.count),original=raw.meshes[m.id].attributes.position.array;assert.deepEqual(Array.from(idx),raw.meshes[m.id].index.array);for(let k=0;k<pos.length;k+=3){const restored=[-pos[k+2]*1000+center[0],pos[k+1]*1000+center[1],pos[k]*1000+center[2]];for(let j=0;j<3;j++)maxError=Math.max(maxError,Math.abs(restored[j]-original[k+j]));}}assert.ok(maxError<.001,'Exported web geometry must preserve STEP positions within float32 precision.');}
+console.log(`PASS: ${meta.meshCount} bodies, all ${meta.sourcePartCount} active parts mapped, ${triangles} triangles; valid buffers, indices, groups and names; maximum STEP round-trip error ${maxError.toFixed(6)} mm.`);
