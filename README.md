@@ -4,6 +4,8 @@ Trang Home có năm mục: **Tổng quan về xe**, **Thùng phụ**, **Thùng c
 
 Chủ đề **Liquid Glass** được áp dụng qua `dist/glass.css`, giữ bố cục gốc của Home và trình xem. Các bề mặt kính có chế độ sáng/tối, nền mờ, viền phản sáng và màu xanh cho thao tác chọn. Trình duyệt không hỗ trợ `backdrop-filter` hoặc bật giảm độ trong suốt sẽ dùng nền đặc dễ đọc.
 
+`dist/glass-motion.js` thêm chuyển động xuất hiện khi cuộn, ánh sáng trên kính theo con trỏ, phản hồi khi chạm và chuyển chế độ sáng/tối. Liên kết vẫn điều hướng trực tiếp, kết hợp với hiệu ứng xuất hiện của trang đích; đổi sáng/tối dùng View Transitions khi trình duyệt hỗ trợ. Khi bật giảm chuyển động, các hiệu ứng được tắt và nội dung luôn hiển thị ngay cả khi JavaScript chưa chạy.
+
 Thùng phụ và thùng chính dùng mô hình thực tế của người dùng. Thùng chính được xuất từ `THUNG CHINH.STEP.SLDASM` sang STEP và chia lưới, gồm **74 khối hình học thuộc 12 part đang bật**, phân thành 6 nhóm. Các khối trong part đa thân vẫn được đặt đúng vị trí gốc và gắn với tên part tương ứng. `01_09_Tru ban xa` đang suppressed trong cấu hình nguồn, nên chưa có hình học hiển thị; trang ghi rõ trạng thái này.
 
 Tổng quan, thân xe và cặp nâng vẫn ghi **Chờ mô hình**. Tổng quan dùng hình học của hai cụm thùng thật cùng các hình minh họa khác; vị trí, tỷ lệ và liên kết của toàn xe là minh họa, đang chờ bản lắp tổng thể để thay thế.

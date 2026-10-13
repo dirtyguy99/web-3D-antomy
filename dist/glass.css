@@ -103,3 +103,42 @@ body.dark{
  .dark .collection-note,.dark .module-card,.dark .workbench,.dark .pending-notice,.dark .site-header,.dark .module-tabs,.dark .segmented,.dark .tool-stack button,.dark .visual-corner,.dark .overview-link,.dark .pager-home,.dark .explorer-navigation select,.dark #toast{background:#263b50}
 }
 .preview{background:transparent!important;background-image:none!important}.preview .workbench{background:transparent;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none;border:0;border-radius:0}.preview .figure{background:transparent}.preview #viewport{background:none}
+
+/* The optical light is a fixed raster gradient; only its transform moves. */
+.collection-note,.module-card,.workbench{position:relative}
+.glass-sheen,.glass-ripple-bound{position:absolute;inset:0;overflow:hidden;border-radius:inherit;pointer-events:none;z-index:4}
+.glass-sheen{opacity:0;transition:opacity 320ms ease}
+.glass-sheen-light{position:absolute;left:-160px;top:-160px;width:320px;height:320px;background:radial-gradient(circle,rgba(255,255,255,.34),rgba(255,255,255,.12) 35%,transparent 70%);pointer-events:none;transition:transform 160ms cubic-bezier(.22,1,.36,1)}
+.dark .glass-sheen-light{background:radial-gradient(circle,rgba(168,212,255,.12),rgba(168,212,255,.04) 35%,transparent 70%)}
+.glass-reflective.glass-hover>.glass-sheen{opacity:1}
+.glass-press-target{position:relative}
+.glass-ripple{position:absolute;width:80px;height:80px;border-radius:50%;background:radial-gradient(circle,rgba(144,202,255,.52),rgba(255,255,255,.24) 38%,transparent 70%);pointer-events:none}
+.module-tab.glass-press-target{position:relative}
+.module-card{transition:transform 650ms cubic-bezier(.22,1,.36,1),box-shadow 400ms ease,border-color 250ms ease}
+.model-image{transition:transform 1000ms cubic-bezier(.22,1,.36,1)}
+button,.overview-link,.pager-home,.module-tab,.component-link,.hero-link{transition:transform 260ms cubic-bezier(.22,1,.36,1),background-color 220ms ease,border-color 220ms ease,color 220ms ease,box-shadow 300ms ease}
+button:active,.overview-link:active,.pager-home:active,.module-tab:active,.component-link:active{transform:scale(.96)}
+.module-card:active{transform:translateY(-1px) scale(.995)}
+.visual-corner,.action-arrow{transition:transform 500ms cubic-bezier(.22,1,.36,1),background-color 250ms ease}
+@media(hover:hover) and (pointer:fine){
+ .module-card:hover .visual-corner{transform:translate(2px,-2px)}
+ .module-card:hover .action-arrow{transform:translate(3px,-3px)}
+ .tool-stack button:hover,.site-header>.icon-button:hover{transform:translateY(-2px)}
+ .overview-link:hover,.pager-home:hover,.component-link:hover{transform:translateY(-1px)}
+}
+/* Theme snapshots only; native page navigation uses the new page's entrances. */
+::view-transition{pointer-events:none}
+::view-transition-old(root){animation:glass-page-out 160ms ease-out both}
+::view-transition-new(root){animation:glass-page-in 320ms cubic-bezier(.22,1,.36,1) both}
+@keyframes glass-page-out{to{opacity:0}}
+@keyframes glass-page-in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.glass-theme-transition::view-transition-old(root),.glass-theme-transition::view-transition-new(root){animation:none;mix-blend-mode:normal}
+.glass-theme-transition::view-transition-old(root){z-index:1}
+.glass-theme-transition::view-transition-new(root){z-index:2}
+@media(prefers-reduced-motion:reduce){
+ .glass-sheen,.glass-ripple-bound{display:none}
+ .module-card:hover,.module-card:active,.module-card:hover .model-image,button:active,.overview-link:active,.pager-home:active,.module-tab:active,.component-link:active{transform:none}
+ .tool-stack button:hover,.site-header>.icon-button:hover,.overview-link:hover,.pager-home:hover,.component-link:hover,.module-card:hover .visual-corner,.module-card:hover .action-arrow{transform:none}
+ .module-card,.model-image,button,.overview-link,.pager-home,.module-tab,.component-link,.hero-link,.visual-corner,.action-arrow{transition:none}
+ ::view-transition-old(root),::view-transition-new(root){animation:none}
+}
