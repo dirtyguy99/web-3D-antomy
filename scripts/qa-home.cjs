@@ -6,10 +6,10 @@ fs.mkdirSync('qa',{recursive:true});
 const browser=await playwright.chromium.launch({executablePath:process.env.CHROME_PATH||'C:/Program Files/Google/Chrome/Application/chrome.exe',headless:true,args:['--enable-webgl','--ignore-gpu-blocklist','--use-angle=swiftshader']});
 const page=await browser.newPage({viewport:{width:1440,height:1050},reducedMotion:'reduce'}),errors=[];page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error')errors.push(m.text())});
 const base=process.env.TEST_URL||'http://localhost:4173';await page.goto(base);await page.waitForFunction(()=>document.querySelectorAll('.module-card').length===5);
-assert.equal(await page.locator('.module-card.ready').count(),2);assert.equal(await page.locator('.module-card.pending').count(),3);
+assert.equal(await page.locator('.module-card.ready').count(),4);assert.equal(await page.locator('.module-card.pending').count(),1);
 assert.equal(await page.locator('img').evaluateAll(images=>images.every(i=>i.complete&&i.naturalWidth>0)),true,'All five 3D thumbnails must load');
-const actualModels=new Set(['thung-phu','thung-chinh']);
-for(const [id,count] of [['tong-quan',333],['thung-phu',122],['thung-chinh',74],['than-xe',93],['cap-nang',44]]){
+const actualModels=new Set(['thung-phu','thung-chinh','than-xe','tong-quan']);
+for(const [id,count] of [['tong-quan',428],['thung-phu',122],['thung-chinh',74],['than-xe',211],['cap-nang',44]]){
  await page.locator(`a.card-link[href*="module=${id}"]`).click();await page.waitForFunction(()=>window.modelExplorer);assert.equal(await page.evaluate(()=>window.modelExplorer.getState().meshCount),count);assert.equal(await page.locator('#module-switch').inputValue(),id);
  assert.equal(await page.locator('#pending-notice').isVisible(),!actualModels.has(id));
  if(!actualModels.has(id))assert.equal(await page.locator('#stat-size').textContent(),'Chờ dữ liệu CAD');

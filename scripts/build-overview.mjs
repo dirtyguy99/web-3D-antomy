@@ -1,5 +1,11 @@
 import fs from 'node:fs';
 import * as T from '../dist/vendor/three.module.js';
+import {modules} from '../dist/catalog.js';
+
+if(modules.find(m=>m.id==='tong-quan').ready){
+ console.log('Overview uses the real vehicle assembly. Run scripts/convert-vehicle.mjs overview to update its CAD data.');
+ process.exit(0);
+}
 
 // This is an illustrative placement, not an assembly inferred from CAD mates.
 // Existing geometry is reused as a visual reference; the full assembly is pending.

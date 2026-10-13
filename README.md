@@ -8,7 +8,9 @@ Chủ đề **Liquid Glass** được áp dụng qua `dist/glass.css`, giữ b�
 
 Thùng phụ và thùng chính dùng mô hình thực tế của người dùng. Thùng chính được xuất từ `THUNG CHINH.STEP.SLDASM` sang STEP và chia lưới, gồm **74 khối hình học thuộc 12 part đang bật**, phân thành 6 nhóm. Các khối trong part đa thân vẫn được đặt đúng vị trí gốc và gắn với tên part tương ứng. `01_09_Tru ban xa` đang suppressed trong cấu hình nguồn, nên chưa có hình học hiển thị; trang ghi rõ trạng thái này.
 
-Tổng quan, thân xe và cặp nâng vẫn ghi **Chờ mô hình**. Tổng quan dùng hình học của hai cụm thùng thật cùng các hình minh họa khác; vị trí, tỷ lệ và liên kết của toàn xe là minh họa, đang chờ bản lắp tổng thể để thay thế.
+**Thân xe** và **Tổng quan về xe** dùng bản lắp `Full_09_10_2.SLDASM`. Thân xe gồm **211 khối hình học thuộc 144 part** của cabin và khung gầm, chia thành 7 nhóm. Tổng quan gồm **428 khối thuộc 296 part**, chia thành thân xe, thùng chính và thùng phụ; giữ nguyên tỷ lệ và vị trí lắp trong nguồn. Cabin là một part đa thân, nên các khối không có tên riêng được ghi “Cabin · thân N” thay vì tự đặt tên bộ phận.
+
+Home có **4/5 mục đã có mô hình thực tế**. Cặp nâng thùng rác vẫn **Chờ mô hình** và chưa được ghép vào bản tổng thể thực tế. Hai part đang ẩn riêng trong nguồn (`Part1^FULL.STEP` và `4_10_tam_che_thung_sau`) được ẩn khi mở tổng quan; **Hiện lại tất cả** hiện đủ 428 khối, **Đặt lại** khôi phục 426 khối đang hiện. Các trang thùng riêng giữ dữ liệu từ những bản lắp đã cung cấp trước đó, có cấu hình và số part khác bản tổng thể.
 
 ## Mở trên máy
 
@@ -24,13 +26,29 @@ Danh mục nằm tại `dist/catalog.js`. Mỗi mục chỉ định tên, mô t�
 
 `scripts/build-demos.mjs` tạo lại ba mô hình minh họa từ các khối cơ khí bằng Three.js. Các file trong `dist/assets/demo` chỉ dùng để chờ thay bằng dữ liệu CAD thực tế. Hình thu nhỏ trong `dist/assets/previews` được chụp từ các trình xem tương ứng.
 
-`scripts/build-overview.mjs` tạo lại hình minh họa toàn xe, gom các bộ phận thành bốn nhóm có thuộc tính `component` liên kết tới từng trang. Mục tổng quan vẫn đặt `ready: false` cho đến khi có bản lắp toàn xe được xác nhận.
+`scripts/build-overview.mjs` là công cụ tạo bản minh họa cũ trong `dist/assets/demo`, không phải bản lắp CAD. Mục tổng quan hiện dùng `dist/assets/cad/tong-quan.json` và `.bin`, tạo bằng `scripts/convert-vehicle.mjs overview`; không sử dụng dữ liệu minh họa cũ.
 
 ## Cập nhật CAD thùng chính
 
 Trên máy có SolidWorks, chạy `scripts/export-solidworks.ps1` bằng Windows PowerShell 5.1 với `-SourcePath` trỏ tới assembly và `-StepPath` trỏ tới file STEP mới. Script mở chỉ đọc khi cần, xuất theo cấu hình hiện tại, lưu thông tin part vào `.cache/thung-chinh-components.json` và kiểm tra assembly gốc không bị thay đổi. Nó không ghi đè STEP đã có và không đóng các tài liệu đã mở trước đó.
 
-Sau đó chạy `node scripts/inspect-cad.mjs <STEP> thung-chinh` và `node scripts/convert-main.mjs <STEP>`. File khối 3D của thùng chính nằm ở `dist/assets/cad/thung-chinh.json` và `.bin`. `convert-main.mjs` gắn tên part dựa trên tên cụm trong STEP và hộp bao của các component SolidWorks; không có part đang bật nào bị bỏ qua. Chạy lại `node scripts/build-overview.mjs` và chụp ảnh xem trước khi cập nhật dữ liệu CAD.
+Sau đó chạy `node scripts/inspect-cad.mjs <STEP> thung-chinh` và `node scripts/convert-main.mjs <STEP>`. File khối 3D của thùng chính nằm ở `dist/assets/cad/thung-chinh.json` và `.bin`. `convert-main.mjs` gắn tên part dựa trên tên cụm trong STEP và hộp bao của các component SolidWorks; không có part đang bật nào bị bỏ qua. Chụp lại ảnh xem trước khi cập nhật dữ liệu CAD. Muốn cập nhật tổng quan, xuất lại bản lắp toàn xe theo quy trình bên dưới.
+
+## Cập nhật thân xe và tổng quan
+
+Xuất `Full_09_10_2.SLDASM` ở cấu hình hiện tại sang `.cache/Full_09_10_2.step`. Trong cấu hình đã nhận, các cụm thùng đang ẩn nên STEP này chỉ chứa cabin và khung gầm. Để xuất bản đầy đủ, chạy lại `scripts/export-solidworks.ps1` với STEP đích `.cache/Full_09_10_2-all.step`, `-ComponentInfoPath .cache/full-vehicle-components.json` và `-IncludeHiddenComponents`. Tùy chọn này làm việc trên bản sao assembly tạm, ghi nhận trạng thái ẩn của từng component trước khi hiện toàn bộ để xuất; không ghi thay đổi vào file gốc. Chọn tên đích mới nếu STEP hoặc bản sao đã tồn tại.
+
+Chạy lần lượt:
+
+```sh
+node --max-old-space-size=4096 scripts/inspect-cad.mjs .cache/Full_09_10_2.step than-xe
+node --max-old-space-size=4096 scripts/inspect-cad.mjs .cache/Full_09_10_2-all.step full-vehicle
+node scripts/convert-vehicle.mjs chassis
+node scripts/convert-vehicle.mjs overview
+node scripts/verify-vehicle.mjs
+```
+
+Converter đối chiếu tên và hộp bao với thông tin component, dừng nếu thiếu part trong bản xuất, và giữ cả các bản sao chi tiết trùng vị trí. Không đổi tỷ lệ hay tự bố trí lại các cụm. Kiểm tra đối chiếu buffer với dữ liệu STEP đã nhập xác nhận sai số do Float32 dưới 0,001 mm. Ảnh Home phải được chụp lại từ hai trình xem dữ liệu thật. File CAD và dữ liệu trung gian chỉ nằm cục bộ trong `.cache`; website chỉ nhận JSON và buffer hình học đã chuyển đổi.
 
 ## Chức năng
 
@@ -46,7 +64,7 @@ Sau đó chạy `node scripts/inspect-cad.mjs <STEP> thung-chinh` và `node scri
 
 Kích thước trên giao diện là kích thước bao theo trục mô hình sau chia lưới, làm tròn mm; không phải kích thước chế tạo, chiều dài theo trục riêng hay dung tích. Độ lệch tuyến tính chia lưới được đặt 0,5 mm. Phân loại thành 7 nhóm để khám phá dựa trên tên part, không thay thế cây lắp gốc. Chế độ bung là dịch chuyển minh họa phục vụ quan sát, không phải mô phỏng động học, trình tự tháo lắp hoặc kiểm tra va chạm.
 
-File CAD gốc không bị sửa và không nằm trong website. Dữ liệu hiển thị gồm `dist/assets/model.json` và `model.bin`.
+File CAD gốc không bị sửa và không nằm trong website. Dữ liệu thùng phụ nằm ở `dist/assets/model.json` và `model.bin`; thùng chính, thân xe và tổng quan nằm trong `dist/assets/cad`.
 
 ## Tái tạo dữ liệu
 

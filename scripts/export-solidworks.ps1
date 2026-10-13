@@ -2,6 +2,7 @@ param(
  [Parameter(Mandatory=$true)][string]$SourcePath,
  [Parameter(Mandatory=$true)][string]$StepPath,
  [string]$ComponentInfoPath='.cache/thung-chinh-components.json',
+ [switch]$IncludeHiddenComponents,
  [string]$InteropPath='C:/Program Files/SOLIDWORKS Corp/SOLIDWORKS/api/redist/SolidWorks.Interop.sldworks.dll'
 )
 $ErrorActionPreference='Stop'
@@ -12,6 +13,14 @@ if(Test-Path -LiteralPath $taskStep){throw 'Choose a new STEP output filename; e
 New-Item -ItemType Directory -Path ([IO.Path]::GetDirectoryName($taskStep)) -Force | Out-Null
 New-Item -ItemType Directory -Path ([IO.Path]::GetDirectoryName($taskInfo)) -Force | Out-Null
 $taskHash=(Get-FileHash -LiteralPath $taskSource -Algorithm SHA256).Hash
+$taskOriginal=$taskSource
+# Showing hidden components is confined to a disposable read-only assembly copy.
+if($IncludeHiddenComponents){
+ $taskCopy=Join-Path ([IO.Path]::GetDirectoryName($taskStep)) ([IO.Path]::GetFileNameWithoutExtension($taskStep)+'-web-export.SLDASM')
+ if(Test-Path -LiteralPath $taskCopy){throw 'Choose a new output name; temporary assembly copies are not overwritten.'}
+ Copy-Item -LiteralPath $taskSource -Destination $taskCopy
+ $taskSource=$taskCopy
+}
 Add-Type -Path $InteropPath
 $taskCode=@'
 using System;
@@ -19,7 +28,7 @@ using System.IO;
 using System.Collections.Generic;
 using SolidWorks.Interop.sldworks;
 public class WebsiteCADExport {
- public static object[] Run(string source,string destination){
+ public static object[] Run(string source,string destination,bool includeHidden){
   ISldWorks sw=(ISldWorks)Activator.CreateInstance(Type.GetTypeFromProgID("SldWorks.Application"));
   IModelDoc2 previous=sw.ActiveDoc as IModelDoc2;
   string previousTitle=previous==null?null:previous.GetTitle();
@@ -35,9 +44,12 @@ public class WebsiteCADExport {
    foreach(object item in (object[])assembly.GetComponents(false)){
     IComponent2 c=(IComponent2)item;bool suppressed=c.IsSuppressed();object[] children=c.GetChildren() as object[];IModelDoc2 doc=c.GetModelDoc2() as IModelDoc2;
     if(!suppressed&&doc==null)unresolved++;
-    records.Add(new Dictionary<string,object>{{"name",c.Name2},{"path",c.GetPathName()},{"suppressed",suppressed},{"children",children==null?0:children.Length},{"documentType",doc==null?0:doc.GetType()},{"box",suppressed?null:c.GetBox(false,false)}});
+    records.Add(new Dictionary<string,object>{{"name",c.Name2},{"path",c.GetPathName()},{"suppressed",suppressed},{"visibility",c.Visible},{"children",children==null?0:children.Length},{"documentType",doc==null?0:doc.GetType()},{"box",suppressed?null:c.GetBox(false,false)}});
    }
    if(unresolved>0)throw new Exception("Unresolved components: "+unresolved);
+   if(includeHidden)foreach(object item in (object[])assembly.GetComponents(false)){
+    IComponent2 c=(IComponent2)item;if(!c.IsSuppressed())c.Visible=1;
+   }
    model.ClearSelection2(true);int saveErrors=0,saveWarnings=0;
    if(!model.Extension.SaveAs(destination,0,1,null,ref saveErrors,ref saveWarnings)||!File.Exists(destination))throw new Exception("STEP export failed: "+saveErrors+" / "+saveWarnings);
    return records.ToArray();
@@ -49,7 +61,8 @@ public class WebsiteCADExport {
 }
 '@
 Add-Type -TypeDefinition $taskCode -ReferencedAssemblies $InteropPath
-$taskRecords=[WebsiteCADExport]::Run($taskSource,$taskStep)
-if((Get-FileHash -LiteralPath $taskSource -Algorithm SHA256).Hash -ne $taskHash){throw 'Source assembly changed during export.'}
+$taskRecords=[WebsiteCADExport]::Run($taskSource,$taskStep,[bool]$IncludeHiddenComponents)
+if((Get-FileHash -LiteralPath $taskOriginal -Algorithm SHA256).Hash -ne $taskHash){throw 'Source assembly changed during export.'}
+if((Get-FileHash -LiteralPath $taskSource -Algorithm SHA256).Hash -ne $taskHash){throw 'Temporary source assembly changed during export.'}
 ConvertTo-Json -InputObject @($taskRecords) -Depth 8 | Set-Content -LiteralPath $taskInfo -Encoding UTF8
 [pscustomobject]@{step=$taskStep;components=@($taskRecords).Count;sourceUnchanged=$true}
