@@ -1,0 +1,105 @@
+/* Liquid Glass material on the original layout. CAD data and page structure stay intact. */
+:root{
+ --paper:#edf4fa;--surface:rgba(255,255,255,.74);--ink:#1b2d40;--muted:#52677b;
+ --line:rgba(100,137,170,.20);--subtle:rgba(215,231,246,.74);--accent:#2466ab;
+ --accent-bg:rgba(209,229,250,.72);--canvas:rgba(226,237,244,.60);--white:#fff;
+ --shadow:rgba(49,83,113,.12);--glass-fill:linear-gradient(135deg,rgba(255,255,255,.82),rgba(255,255,255,.56));
+ --glass-edge:rgba(255,255,255,.90);--glass-highlight:rgba(255,255,255,.90);
+ --glass-shadow:0 16px 40px -24px rgba(40,78,115,.30),inset 0 1px 0 var(--glass-highlight),inset 0 -1px 0 rgba(255,255,255,.35);
+ --glass-blur:blur(22px) saturate(145%);
+}
+body{
+ background-color:var(--paper);
+ background-image:radial-gradient(ellipse at 5% 0%,rgba(117,189,248,.30),transparent 48%),radial-gradient(ellipse at 100% 30%,rgba(181,220,231,.35),transparent 48%),radial-gradient(ellipse at 30% 100%,rgba(144,177,219,.18),transparent 48%);
+ background-attachment:fixed;
+}
+body.dark{
+ --paper:#121e2c;--surface:rgba(30,48,67,.82);--ink:#e8f1fb;--muted:#b3c5d9;
+ --line:rgba(172,203,234,.18);--subtle:rgba(62,87,112,.74);--accent:#a0caff;
+ --accent-bg:rgba(59,93,132,.65);--canvas:rgba(25,44,62,.70);--white:#253c53;
+ --shadow:rgba(0,0,0,.24);--glass-fill:linear-gradient(135deg,rgba(43,63,85,.84),rgba(25,42,61,.74));
+ --glass-edge:rgba(169,204,238,.26);--glass-highlight:rgba(217,234,255,.20);
+ --glass-shadow:0 18px 42px -24px rgba(0,0,0,.65),inset 0 1px 0 var(--glass-highlight),inset 0 -1px 0 rgba(199,219,248,.07);
+ background-image:radial-gradient(ellipse at 0% 0%,rgba(63,114,169,.28),transparent 48%),radial-gradient(ellipse at 100% 40%,rgba(58,104,130,.20),transparent 50%),radial-gradient(ellipse at 25% 100%,rgba(43,83,144,.15),transparent 50%);
+}
+.site-header{
+ background:var(--glass-fill);border-bottom:1px solid var(--glass-edge);
+ backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
+ box-shadow:0 1px 0 rgba(104,142,175,.08);position:relative;z-index:7;
+}
+.collection-note,.module-card,.workbench,.pending-notice{
+ background:var(--glass-fill);border:1px solid var(--glass-edge);box-shadow:var(--glass-shadow);
+ backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);
+}
+.collection-note{border-radius:22px}.module-card{border-radius:24px}.workbench{border-radius:24px}
+.module-card:hover{border-color:var(--glass-edge);box-shadow:0 22px 48px -24px var(--shadow),inset 0 1px 0 var(--glass-highlight);transform:translateY(-3px)}
+.card-visual{
+ background-color:var(--canvas);background-image:none;border-color:var(--line);
+ box-shadow:inset 0 1px 0 var(--glass-highlight);
+}
+.overview-card .card-visual{border-right-color:var(--line)}
+.figure{background:var(--canvas)}#viewport{background-image:none}
+.parts-panel{background:rgba(255,255,255,.20);border-right-color:var(--line)}
+.dark .parts-panel{background:rgba(11,28,45,.14)}
+.controls{background:rgba(255,255,255,.40);border-color:var(--line)}
+.dark .controls{background:rgba(34,52,73,.40)}
+.selection{background:rgba(255,255,255,.20);border-color:var(--line)}
+.dark .selection{background:rgba(19,35,53,.26)}
+.panel-bottom{border-color:var(--line)}
+.segmented,.tool-stack button,.visual-corner,.overview-link,.pager-home,.explorer-navigation select{
+ background:var(--glass-fill);border-color:var(--glass-edge);box-shadow:0 4px 14px -8px var(--shadow),inset 0 1px 0 var(--glass-highlight);
+ backdrop-filter:blur(14px) saturate(140%);-webkit-backdrop-filter:blur(14px) saturate(140%);
+}
+.segmented{border-radius:12px}.segmented button{border-radius:8px}.tool-stack button{border-radius:11px}
+.segmented button.active,button.active,.tool-stack button.active{
+ background:var(--ink);color:var(--paper);border-color:transparent;box-shadow:inset 0 1px 0 rgba(255,255,255,.18);
+}
+.icon-button,.display-controls button,.selection-actions button{border-radius:11px}
+.site-header>.icon-button{border:1px solid var(--glass-edge);background:var(--surface);border-radius:50%;box-shadow:inset 0 1px 0 var(--glass-highlight)}
+.search-wrap input{background:rgba(255,255,255,.42);border-color:var(--line);border-radius:11px;box-shadow:inset 0 1px 3px rgba(80,119,153,.06)}
+.dark .search-wrap input{background:rgba(17,34,53,.50)}
+.module-tabs{
+ background:var(--glass-fill);border:1px solid var(--glass-edge);border-radius:16px;
+ padding:10px 12px;box-shadow:var(--glass-shadow);margin-top:16px;
+ backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);top:8px;
+}
+.module-tab{border-radius:11px}.module-tab.current{background:var(--surface);border-color:var(--glass-edge);box-shadow:inset 0 1px 0 var(--glass-highlight);color:var(--accent)}
+.module-tab:hover{background:var(--subtle);border-color:var(--glass-edge)}
+.overview-link,.pager-home{border-radius:12px}.component-link{border-radius:10px;background:var(--accent-bg);border-color:var(--glass-edge)}
+.pending-notice{border-radius:18px}.notice-icon{color:var(--accent)}
+.availability{background:rgba(255,255,255,.30);border-color:var(--glass-edge)}
+.ready .availability{background:rgba(230,241,228,.72);border-color:rgba(136,164,126,.30);color:#445f3b}
+.dark .ready .availability{background:rgba(58,82,55,.58);border-color:rgba(167,200,151,.25);color:#d0e5bf}
+.card-tags span{background:rgba(255,255,255,.35);border-color:var(--glass-edge);border-radius:7px}
+.dark .card-tags span{background:rgba(45,65,85,.50)}
+.card-action{border-color:var(--line)}.visual-corner{color:var(--accent)}
+.hero-link{border-color:var(--accent);color:var(--accent)}
+.collection-track .complete{background:var(--accent)}
+.selection-actions .primary,.part-select.selected{background:var(--accent-bg);color:var(--accent)}
+.explorer-pager{border-color:var(--line)}.source-note{border-color:var(--line)}
+.technical,.catalog-heading,.home-how,footer{border-color:var(--line)}
+.dark .model-image{filter:brightness(1.02)}
+#toast{background:var(--glass-fill);border:1px solid var(--glass-edge);color:var(--ink);border-radius:16px;box-shadow:var(--glass-shadow);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur)}
+#tooltip{background:var(--ink);color:var(--paper);border-radius:10px}
+#loading{background:var(--canvas)}
+/* A stable opaque surface for browsers without backdrop filtering. */
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+ .collection-note,.module-card,.workbench,.pending-notice,.site-header,.module-tabs,.segmented,.tool-stack button,.visual-corner,.overview-link,.pager-home,.explorer-navigation select,#toast{background:#f2f6fa}
+ .dark .collection-note,.dark .module-card,.dark .workbench,.dark .pending-notice,.dark .site-header,.dark .module-tabs,.dark .segmented,.dark .tool-stack button,.dark .visual-corner,.dark .overview-link,.dark .pager-home,.dark .explorer-navigation select,.dark #toast{background:#263b50}
+}
+@media(max-width:800px){
+ :root{--glass-blur:blur(14px) saturate(135%)}
+ .parts-panel{border-right:0;border-top-color:var(--line)}.module-tabs{padding:8px 9px;margin-top:12px}
+ .overview-card .card-visual{border-right:0;border-bottom-color:var(--line)}
+}
+@media(max-width:550px){
+ .hero-copy h1{font-size:36px;letter-spacing:-1.6px}
+ .collection-note{border-radius:18px}.module-card,.workbench{border-radius:20px}.module-tabs{border-radius:13px;padding:7px;top:5px}
+ .module-tab{border-radius:9px}.controls{background:rgba(255,255,255,.42)}
+ .dark .controls{background:rgba(34,52,73,.50)}
+}
+@media(prefers-reduced-transparency:reduce){
+ .collection-note,.module-card,.workbench,.pending-notice,.site-header,.module-tabs,.segmented,.tool-stack button,.visual-corner,.overview-link,.pager-home,.explorer-navigation select,#toast{backdrop-filter:none;-webkit-backdrop-filter:none;background:#f2f6fa}
+ .dark .collection-note,.dark .module-card,.dark .workbench,.dark .pending-notice,.dark .site-header,.dark .module-tabs,.dark .segmented,.dark .tool-stack button,.dark .visual-corner,.dark .overview-link,.dark .pager-home,.dark .explorer-navigation select,.dark #toast{background:#263b50}
+}
+.preview{background:transparent!important;background-image:none!important}.preview .workbench{background:transparent;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none;border:0;border-radius:0}.preview .figure{background:transparent}.preview #viewport{background:none}
