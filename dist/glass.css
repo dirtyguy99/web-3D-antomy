@@ -93,6 +93,10 @@ body.dark{
  .overview-card .card-visual{border-right:0;border-bottom-color:var(--line)}
 }
 @media(max-width:550px){
+ .site-header{display:grid;grid-template-columns:minmax(0,1fr) auto;height:auto;min-height:76px;gap:12px;padding-top:16px;padding-bottom:14px}
+ .site-header .brand{grid-column:1;grid-row:1;font-size:12px;letter-spacing:.7px}
+ .site-header>.icon-button{grid-column:2;grid-row:1}
+ .home-nav,.explorer-navigation{grid-column:1/-1;grid-row:2;justify-content:space-between}
  .hero-copy h1{font-size:36px;letter-spacing:-1.6px}
  .collection-note{border-radius:18px}.module-card,.workbench{border-radius:20px}.module-tabs{border-radius:13px;padding:7px;top:5px}
  .module-tab{border-radius:9px}.controls{background:rgba(255,255,255,.42)}
