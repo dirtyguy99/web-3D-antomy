@@ -15,7 +15,8 @@ function sync(){
  toggle.hidden=reduced.matches;
  toggle.setAttribute('aria-pressed',String(paused));
  toggle.setAttribute('aria-label',paused?'Tiếp tục cảnh xe chuyển động':'Tạm dừng cảnh xe chuyển động');
- toggle.innerHTML=`<span aria-hidden="true">${paused?'▷':'Ⅱ'}</span><span>${paused?'Tiếp tục cảnh':'Tạm dừng cảnh'}</span>`;
+ toggle.title=paused?'Tiếp tục hoạt cảnh':'Tạm dừng hoạt cảnh';
+ toggle.innerHTML=`<svg viewBox="0 0 24 24" aria-hidden="true">${paused?'<path d="m8 5 11 7-11 7Z" fill="currentColor"/>':'<path d="M8 6v12m8-12v12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>'}</svg>`;
 }
 toggle.addEventListener('click',()=>{paused=!paused;sync()});
 reduced.addEventListener('change',()=>{paused=reduced.matches;sync()});

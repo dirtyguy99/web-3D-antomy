@@ -1,0 +1,64 @@
+/* Full-width scenery and alternating, individual model sections requested by the user. */
+.home-page .site-header{gap:30px}
+.home-page .site-header::after{display:none}
+.home-page .home-nav{gap:30px;font-size:12px}
+.home-page .home-nav a{display:flex;align-items:center;justify-content:center;min-height:44px;white-space:nowrap}
+.home-page .home-hero{padding:0}
+.home-page .hero-scene{height:calc(100svh - var(--home-header-height,76px));min-height:560px;max-height:none;border:0;border-radius:0;box-shadow:none}
+.home-page .scene-toggle{display:grid;place-items:center;width:48px;height:48px;min-height:48px;padding:0;border-radius:50%}
+.home-page .scene-toggle svg{display:block;width:21px;height:21px}
+.home-page .scene-toggle[hidden]{display:none}
+.home-page .module-grid{grid-template-columns:minmax(0,1fr);gap:40px}
+.home-page .module-row .card-link{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));min-height:480px}
+.home-page .module-row .card-visual{grid-column:1;grid-row:1;position:relative;height:auto;min-height:480px;border-bottom:0;border-right:1px solid var(--line)} /* taste-skill-ignore: Keep the image/text seam of the user's reference section and existing glass surfaces. */
+.home-page .module-row .card-content{grid-column:2;grid-row:1;align-self:center;padding:36px 40px 30px;min-width:0;position:relative;z-index:5}
+.home-page .module-row.image-right .card-visual{grid-column:2;border-right:0;border-left:1px solid var(--line)} /* taste-skill-ignore: Keep the image/text seam of the user's reference section. */
+.home-page .module-row.image-right .card-content{grid-column:1}
+.home-page .module-row .model-image{position:absolute;inset:0;width:100%;height:100%;min-height:0;object-fit:contain;scale:1.12}
+.home-page .module-row .card-title-row{flex-direction:row;flex-wrap:wrap;align-items:center;gap:12px}
+.home-page .module-row h3{font-size:clamp(26px,2.3vw,36px);line-height:1.3;letter-spacing:-1px;flex:1 1 240px}
+.home-page .module-row .availability{font-size:10px;padding:7px 10px}
+.home-page .module-row .card-description{font-size:16px;line-height:1.85;min-height:0;margin:22px 0;max-width:60ch}
+.home-page .module-row .card-tags{gap:8px}
+.home-page .module-row .card-tags span{font-size:11px;padding:7px 9px}
+.home-page .module-row .card-details{margin:24px 0}
+.home-page .module-row .card-details li{font-size:13px;line-height:1.85;margin-bottom:6px}
+.home-page .module-row .card-details li::before{top:11px}
+.home-page .module-row .card-action{font-size:14px;height:58px;margin:0}
+.home-page .module-row .visual-corner{width:38px;height:38px;font-size:20px}
+.home-page .module-row .card-image-meta{top:26px;left:28px;right:28px}
+.home-page .module-row .visual-caption{left:28px;bottom:28px;font-size:9px;max-width:calc(100% - 100px)}
+@media(max-width:1100px){
+ .home-page .module-row .card-content{padding:30px}
+ .home-page .module-row .card-description{font-size:15px}
+ .home-page .module-row .card-tags span{font-size:10px}
+}
+@media(max-width:950px){
+ .home-page .site-header{display:grid;grid-template-columns:minmax(0,1fr);height:auto;min-height:0;padding-top:12px;padding-bottom:8px;gap:4px}
+ .home-page .brand{grid-column:1;grid-row:1;min-height:30px}
+ .home-page .home-nav{grid-column:1;grid-row:2;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;font-size:12px}
+ .home-page .home-nav a{padding:8px 0}
+}
+@media(max-width:800px){
+ .home-page .hero-scene{height:calc(100svh - var(--home-header-height,98px));min-height:580px}
+ .home-page .module-grid{gap:30px}
+ .home-page .module-row .card-link{grid-template-columns:minmax(0,1fr);min-height:0}
+ .home-page .module-row .card-visual,.home-page .module-row.image-right .card-visual{grid-column:1;grid-row:1;height:380px;min-height:0;border-right:0;border-left:0;border-bottom:1px solid var(--line)} /* taste-skill-ignore: Preserve the reference image/text seam in the stacked phone layout. */
+ .home-page .module-row .card-content,.home-page .module-row.image-right .card-content{grid-column:1;grid-row:2;padding:30px}
+ .home-page .module-row .card-description{font-size:16px}
+}
+@media(max-width:550px){
+ .home-page .brand{font-size:13px;letter-spacing:.5px;gap:8px}
+ .home-page .home-nav{font-size:10px;gap:4px}
+ .home-page .hero-scene{height:calc(100svh - var(--home-header-height,94px));min-height:500px}
+ .home-page .module-grid{gap:26px}
+ .home-page .module-row .card-visual,.home-page .module-row.image-right .card-visual{height:290px}
+ .home-page .module-row .card-content,.home-page .module-row.image-right .card-content{padding:24px 21px 16px}
+ .home-page .module-row h3{font-size:25px;letter-spacing:-.7px;flex-basis:210px}
+ .home-page .module-row .card-description{font-size:14px;margin:18px 0;line-height:1.9}
+ .home-page .module-row .card-details li{font-size:12px}
+ .home-page .module-row .availability{font-size:9px}
+ .home-page .module-row .card-action{font-size:13px}
+ .home-page .module-row .card-image-meta{left:21px;right:21px;top:21px}
+ .home-page .module-row .visual-caption{left:21px;bottom:24px;font-size:8px}
+}
