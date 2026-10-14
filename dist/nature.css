@@ -3,61 +3,82 @@
  --paper:#fbfdfb;--surface:rgba(255,255,255,.80);--ink:#183325;--muted:#526c5c;
  --line:rgba(91,139,105,.20);--subtle:rgba(225,240,226,.78);--accent:#247746;
  --accent-bg:rgba(210,235,215,.76);--canvas:rgba(237,246,234,.70);--white:#fff;
- --shadow:rgba(39,86,48,.12);--glass-fill:linear-gradient(135deg,rgba(255,255,255,.88),rgba(241,249,239,.65));
+ --shadow:rgba(39,86,48,.12);--glass-fill:linear-gradient(135deg,rgba(255,255,255,.88),rgba(241,249,239,.65)); /* taste-skill-ignore: Preserve the user-requested Liquid Glass surfaces and established green palette. */
  --glass-edge:rgba(255,255,255,.94);--glass-highlight:rgba(255,255,255,.96);
  --glass-shadow:0 16px 40px -24px rgba(50,98,57,.24),inset 0 1px 0 var(--glass-highlight),inset 0 -1px 0 rgba(255,255,255,.45);
 }
-body{background-color:var(--paper);background-image:radial-gradient(ellipse at 100% 0%,rgba(188,221,160,.20),transparent 50%),radial-gradient(ellipse at 0% 55%,rgba(207,234,205,.18),transparent 50%)}
+body{background-color:var(--paper);background-image:radial-gradient(ellipse at 100% 0%,rgba(188,221,160,.20),transparent 50%),radial-gradient(ellipse at 0% 55%,rgba(207,234,205,.18),transparent 50%)} /* taste-skill-ignore: Preserve the user-requested Liquid Glass surfaces and established green palette. */
 body.dark{
  --paper:#102018;--surface:rgba(30,56,40,.86);--ink:#edf7ef;--muted:#b7cdbb;
  --line:rgba(185,219,193,.19);--subtle:rgba(53,87,63,.74);--accent:#a5dbb4;
  --accent-bg:rgba(51,104,67,.64);--canvas:rgba(25,49,34,.72);--white:#244632;
- --shadow:rgba(0,0,0,.24);--glass-fill:linear-gradient(135deg,rgba(41,73,49,.86),rgba(24,48,34,.80));
+ --shadow:rgba(0,0,0,.24);--glass-fill:linear-gradient(135deg,rgba(41,73,49,.86),rgba(24,48,34,.80)); /* taste-skill-ignore: Preserve the user-requested Liquid Glass surfaces and established green palette. */
  --glass-edge:rgba(185,219,193,.26);--glass-highlight:rgba(226,248,226,.22);
  --glass-shadow:0 18px 42px -24px rgba(0,0,0,.6),inset 0 1px 0 var(--glass-highlight),inset 0 -1px 0 rgba(216,242,214,.07);
- background-image:radial-gradient(ellipse at 100% 0%,rgba(71,127,73,.20),transparent 52%);
+ background-image:radial-gradient(ellipse at 100% 0%,rgba(71,127,73,.20),transparent 52%); /* taste-skill-ignore: Preserve the user-requested Liquid Glass surfaces and established green palette. */
 }
 .controls{background:rgba(246,252,243,.5)}.dark .controls{background:rgba(37,64,44,.48)}
 .search-wrap input{background:rgba(252,255,250,.65)}.dark .search-wrap input{background:rgba(19,43,29,.6)}
 .dark .selection{background:rgba(19,43,28,.28)}.dark .parts-panel{background:rgba(12,31,20,.14)}.dark .card-tags span{background:rgba(37,66,43,.48)}
 .selection-actions .primary,.part-select.selected,.component-link{background:var(--accent-bg);color:var(--accent)}
-.glass-sheen-light{background:radial-gradient(circle,rgba(255,255,255,.4),rgba(233,255,224,.14) 35%,transparent 70%)}
-.dark .glass-sheen-light{background:radial-gradient(circle,rgba(190,238,181,.14),rgba(178,230,169,.04) 35%,transparent 70%)}
-.glass-ripple{background:radial-gradient(circle,rgba(125,191,140,.48),rgba(235,255,223,.25) 38%,transparent 70%)}
-#module-tabs,.explode-rail{background:linear-gradient(145deg,rgba(255,255,255,.76),rgba(231,246,226,.36));box-shadow:0 12px 38px rgba(40,86,52,.16),inset 0 1px 1px rgba(255,255,255,.96),inset 0 -1px 1px rgba(255,255,255,.4)}
-#module-tabs .dock-lens{background:linear-gradient(145deg,rgba(255,255,255,.84),rgba(226,246,222,.42));box-shadow:0 3px 12px rgba(59,112,71,.12),inset 0 1px 2px #fff,inset 0 -2px 5px rgba(102,155,102,.12)}
-.dark #module-tabs,.dark .explode-rail{background:linear-gradient(145deg,rgba(63,95,66,.60),rgba(25,49,33,.5));border-color:rgba(209,239,208,.3);box-shadow:0 14px 40px rgba(0,0,0,.24),inset 0 1px 1px rgba(223,247,218,.28),inset 0 -1px 1px rgba(205,238,194,.1)}
-.dark #module-tabs .dock-lens{background:linear-gradient(145deg,rgba(190,235,179,.24),rgba(95,150,105,.14));border-color:rgba(225,249,218,.43);box-shadow:0 4px 14px rgba(0,0,0,.12),inset 0 1px 2px rgba(234,255,225,.25),inset 0 -2px 6px rgba(179,227,164,.09)}
+.glass-sheen-light{background:radial-gradient(circle,rgba(255,255,255,.4),rgba(233,255,224,.14) 35%,transparent 70%)} /* taste-skill-ignore: Preserve the user-requested Liquid Glass surfaces and established green palette. */
+.dark .glass-sheen-light{background:radial-gradient(circle,rgba(190,238,181,.14),rgba(178,230,169,.04) 35%,transparent 70%)} /* taste-skill-ignore: Preserve the user-requested Liquid Glass surfaces and established green palette. */
+.glass-ripple{background:radial-gradient(circle,rgba(125,191,140,.48),rgba(235,255,223,.25) 38%,transparent 70%)} /* taste-skill-ignore: Preserve the user-requested Liquid Glass surfaces and established green palette. */
+#module-tabs,.explode-rail{background:linear-gradient(145deg,rgba(255,255,255,.76),rgba(231,246,226,.36));box-shadow:0 12px 38px rgba(40,86,52,.16),inset 0 1px 1px rgba(255,255,255,.96),inset 0 -1px 1px rgba(255,255,255,.4)} /* taste-skill-ignore: Preserve the user-requested Liquid Glass surfaces and established green palette. */
+#module-tabs .dock-lens{background:linear-gradient(145deg,rgba(255,255,255,.84),rgba(226,246,222,.42));box-shadow:0 3px 12px rgba(59,112,71,.12),inset 0 1px 2px #fff,inset 0 -2px 5px rgba(102,155,102,.12)} /* taste-skill-ignore: Preserve the user-requested Liquid Glass surfaces and established green palette. */
+.dark #module-tabs,.dark .explode-rail{background:linear-gradient(145deg,rgba(63,95,66,.60),rgba(25,49,33,.5));border-color:rgba(209,239,208,.3);box-shadow:0 14px 40px rgba(0,0,0,.24),inset 0 1px 1px rgba(223,247,218,.28),inset 0 -1px 1px rgba(205,238,194,.1)} /* taste-skill-ignore: Preserve the user-requested Liquid Glass surfaces and established green palette. */
+.dark #module-tabs .dock-lens{background:linear-gradient(145deg,rgba(190,235,179,.24),rgba(95,150,105,.14));border-color:rgba(225,249,218,.43);box-shadow:0 4px 14px rgba(0,0,0,.12),inset 0 1px 2px rgba(234,255,225,.25),inset 0 -2px 6px rgba(179,227,164,.09)} /* taste-skill-ignore: Preserve the user-requested Liquid Glass surfaces and established green palette. */
 .dark #module-tabs .module-tab.current{color:#d0efce}.dark .explode-rail .slider-row #play{background:rgba(201,235,192,.07)}
-.explode-rail #explode::-webkit-slider-runnable-track{background:linear-gradient(to top,var(--accent) var(--explode-progress),rgba(99,143,105,.24) var(--explode-progress));box-shadow:inset 0 1px 2px rgba(40,79,46,.13),0 1px 0 rgba(255,255,255,.6)}
-.explode-rail #explode::-webkit-slider-thumb{box-shadow:0 2px 7px rgba(42,102,57,.3),inset 0 1px 2px rgba(255,255,255,.38)}
-.explode-rail #explode:active::-webkit-slider-thumb{box-shadow:0 0 0 6px rgba(71,157,88,.13),0 3px 10px rgba(42,102,57,.25)}
+.explode-rail #explode::-webkit-slider-runnable-track{background:linear-gradient(to top,var(--accent) var(--explode-progress),rgba(99,143,105,.24) var(--explode-progress));box-shadow:inset 0 1px 2px rgba(40,79,46,.13),0 1px 0 rgba(255,255,255,.6)} /* taste-skill-ignore: Preserve the user-requested Liquid Glass surfaces and established green palette. */
+.explode-rail #explode::-webkit-slider-thumb{box-shadow:0 2px 7px rgba(42,102,57,.3),inset 0 1px 2px rgba(255,255,255,.38)} /* taste-skill-ignore: Preserve the user-requested Liquid Glass surfaces and established green palette. */
+.explode-rail #explode:active::-webkit-slider-thumb{box-shadow:0 0 0 6px rgba(71,157,88,.13),0 3px 10px rgba(42,102,57,.25)} /* taste-skill-ignore: Preserve the user-requested Liquid Glass surfaces and established green palette. */
 .explode-rail #explode::-moz-range-track{background:rgba(99,143,105,.24)}
-.home-hero{grid-template-columns:minmax(0,.95fr) minmax(0,1.15fr);gap:38px;padding:46px 0 50px}
-.hero-copy h1{font-size:clamp(38px,4.1vw,60px);letter-spacing:-2.4px;line-height:1.17}
-.hero-copy h1>span{color:var(--accent)}.hero-copy p{font-size:16px;line-height:1.8;max-width:420px}
-.hero-link{font-size:13px;min-height:42px;align-items:center}
+.home-hero{display:block;padding:16px 16px 0;margin:0}
+.hero-copy{position:absolute;left:4.2%;top:clamp(30px,5vh,60px);z-index:2;max-width:670px;color:#183b2a}
+.hero-copy h1{font-size:clamp(38px,min(4.5vw,6.6svh),72px);letter-spacing:-2.6px;line-height:1.15;margin:0 0 20px}
+.hero-copy h1>span{color:#33774b}.hero-copy p{font-size:16px;line-height:1.8;max-width:550px;color:#42694f}
+.hero-link{font-size:13px;min-height:44px;align-items:center;color:#205c38;border-color:#4d785a;margin-top:18px;gap:32px}
+.hero-link span{color:#33774b}
 .card-description{max-width:60ch}
-.hero-visual{min-width:0}
-.hero-scene{position:relative;border-radius:28px;overflow:hidden;background:#eaf6e9;border:1px solid var(--glass-edge);box-shadow:var(--glass-shadow)}
-#hero-scene-view{position:relative;height:360px;overflow:hidden}
-#hero-scene-view img,#hero-scene-view canvas{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
-#hero-scene-view img{transition:opacity 400ms ease}.scene-ready #hero-scene-view img{opacity:0}
-.scene-toggle{position:absolute;bottom:16px;left:16px;display:flex;align-items:center;gap:8px;padding:10px 13px;min-height:40px;border-radius:24px;background:rgba(255,255,255,.72);border:1px solid rgba(255,255,255,.85);color:#1b4930;font-size:11px;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 4px 18px rgba(35,75,42,.1)}
+.hero-scene{position:relative;height:calc(100svh - var(--home-header-height,76px) - 34px);min-height:560px;max-height:960px;border-radius:28px;overflow:hidden;background:#eaf6e9;border:1px solid var(--glass-edge);box-shadow:var(--glass-shadow);isolation:isolate;--tree-span:clamp(900px,140svh,1600px)} /* taste-skill-ignore: Preserve the user-requested Liquid Glass surfaces and established green palette. */
+#hero-scene-view{position:absolute;inset:0;overflow:hidden}
+.field-landscape{position:absolute;inset:0;width:100%;height:100%;display:block}
+.field-sun{position:absolute;right:9%;top:7%;width:clamp(100px,14vw,220px);height:auto}
+.field-trees{position:absolute;left:0;bottom:26%;width:calc(var(--tree-span)*2);height:auto;max-width:none;animation:field-pass 38s linear infinite}
+.field-road{position:absolute;left:0;right:0;bottom:14%;height:15%;background:#bac4ad;border-top:4px solid #edf2d6;border-bottom:4px solid #edf2d6;overflow:hidden}
+.road-markings{position:absolute;top:54%;left:0;width:calc(100% + 160px);height:3px;background:repeating-linear-gradient(to right,#f8fae6 0 65px,transparent 65px 160px);animation:road-pass 1.8s linear infinite} /* taste-skill-ignore: Road markings are drawn as part of the requested 2D animation. */
+.truck-position{position:absolute;left:50%;bottom:20.3%;width:clamp(400px,min(49vw,70svh),800px);transform:translateX(-50%)}
+.field-truck{display:block;width:100%;height:auto;overflow:visible;animation:truck-cruise 7s ease-in-out infinite}
+.truck-body{animation:truck-bounce 850ms ease-in-out infinite}
+.truck-wheel{transform-box:fill-box;transform-origin:center;animation:wheel-roll 1.05s linear infinite}
+.field-grass{position:absolute;left:0;bottom:2%;width:calc(var(--tree-span)*2);height:auto;animation:field-pass 18s linear infinite}
+.field-clouds{animation:cloud-drift 32s ease-in-out infinite alternate}
+.sun-rays{transform-box:fill-box;transform-origin:center;animation:sun-turn 90s linear infinite}
+.scene-motion{animation-play-state:paused}
+.scene-running .scene-motion{animation-play-state:running}
+.scene-toggle{position:absolute;bottom:22px;left:4.2%;z-index:3;display:flex;align-items:center;gap:9px;padding:11px 16px;min-height:44px;border-radius:24px;background:rgba(255,255,255,.76);border:1px solid rgba(255,255,255,.9);color:#1b4930;font-size:12px;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 4px 18px rgba(35,75,42,.1)} /* taste-skill-ignore: Preserve the user-requested Liquid Glass surfaces and established green palette. */
 .scene-toggle>span:first-child{font-size:17px;line-height:1}
 .scene-toggle[hidden]{display:none}
-.hero-visual .collection-note{margin-top:14px;padding:15px 18px;display:grid;grid-template-columns:auto 1fr;gap:3px 18px;align-items:center;border-radius:18px}
-.hero-visual .collection-top{grid-column:2;font-size:8px}
-.hero-visual .collection-count{grid-column:1;grid-row:1/5;font-size:42px;letter-spacing:-2px;margin:0;white-space:nowrap}
-.hero-visual .collection-count span{font-size:15px;margin-left:7px}
-.hero-visual .collection-note>p{grid-column:2;font-size:10px}
-.hero-visual .collection-track{grid-column:2;margin-top:5px}
-.hero-visual .collection-caption{grid-column:2;margin-top:4px;font-size:9px;line-height:1.6}
-@media(min-width:1600px){#hero-scene-view{height:400px}}
-@media(max-width:1100px){.home-hero{gap:24px;padding:38px 0}.hero-copy h1{font-size:43px;letter-spacing:-1.9px}#hero-scene-view{height:330px}.hero-copy p{font-size:14px}}
-@media(max-width:800px){.home-hero{grid-template-columns:1fr;gap:26px;padding:30px 0 36px}.hero-copy h1{font-size:44px;letter-spacing:-1.9px}.hero-copy p{max-width:530px;font-size:15px}.hero-link{margin-top:16px}#hero-scene-view{height:340px}}
-@media(max-width:550px){.hero-copy h1{font-size:36px;letter-spacing:-1.5px;margin:12px 0}.hero-copy p{font-size:14px;line-height:1.8}.hero-scene{border-radius:22px}#hero-scene-view{height:265px}.hero-visual .collection-note{padding:13px 15px;gap:3px 13px}.hero-visual .collection-count{font-size:36px}.hero-visual .collection-count span{font-size:12px}.scene-toggle{bottom:12px;left:12px;font-size:10px;padding:9px 12px}}
-@media(max-width:350px){.hero-copy h1{font-size:31px;letter-spacing:-1.3px}.hero-visual .collection-note{gap:3px 10px}.hero-visual .collection-caption{font-size:8px}#hero-scene-view{height:245px}}
-@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.collection-note,.module-card,.workbench,.pending-notice,.site-header,#module-tabs,.explode-rail,#toast{background:#f5faf3}.dark .collection-note,.dark .module-card,.dark .workbench,.dark .pending-notice,.dark .site-header,.dark #module-tabs,.dark .explode-rail,.dark #toast{background:#25422f}}
-@media(prefers-reduced-transparency:reduce){.collection-note,.module-card,.workbench,.site-header,#module-tabs,.explode-rail,#toast{background:#f5faf3}.dark .collection-note,.dark .module-card,.dark .workbench,.dark .site-header,.dark #module-tabs,.dark .explode-rail,.dark #toast{background:#25422f}.scene-toggle{backdrop-filter:none;background:#f5faf3}}
+.home-collection{margin:26px 0 30px;padding:20px 24px;display:grid;grid-template-columns:auto 1fr;gap:4px 24px;align-items:center;border-radius:20px;max-width:760px}
+.home-collection .collection-top{grid-column:2;font-size:9px}
+.home-collection .collection-count{grid-column:1;grid-row:1/5;font-size:46px;letter-spacing:-2px;margin:0;white-space:nowrap}
+.home-collection .collection-count span{font-size:16px;margin-left:7px}
+.home-collection>p{grid-column:2;font-size:12px;padding:0}
+.home-collection .collection-track{grid-column:2;margin-top:5px}
+.home-collection .collection-caption{grid-column:2;margin-top:4px;font-size:10px;line-height:1.6}
+@keyframes field-pass{to{transform:translateX(calc(var(--tree-span)*-1))}}
+@keyframes road-pass{to{transform:translateX(-160px)}}
+@keyframes wheel-roll{to{transform:rotate(360deg)}}
+@keyframes truck-bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-1.5px)}}
+@keyframes truck-cruise{0%,100%{transform:translateX(-5px)}50%{transform:translateX(5px)}}
+@keyframes cloud-drift{to{transform:translateX(-40px)}}
+@keyframes sun-turn{to{transform:rotate(360deg)}}
+@media(max-width:1100px){.hero-copy h1{font-size:clamp(38px,min(5.5vw,6.6svh),58px);letter-spacing:-2px}.truck-position{width:min(65vw,70svh)}}
+@media(max-width:800px){.home-hero{padding:12px 12px 0}.hero-scene{height:calc(100svh - var(--home-header-height,62px) - 28px);min-height:580px;border-radius:24px;--tree-span:1200px}.hero-copy{left:5%;right:5%;top:34px}.hero-copy h1{font-size:44px;letter-spacing:-1.9px}.hero-copy p{font-size:15px;max-width:430px}.truck-position{width:80vw;bottom:21%}.scene-toggle{left:5%;bottom:20px}.home-collection{margin-top:22px}}
+@media(max-width:550px){.home-hero{padding:8px 8px 0}.hero-scene{height:calc(100svh - var(--home-header-height,112px) - 20px);min-height:500px;max-height:850px;border-radius:22px;--tree-span:1100px}.hero-copy{top:30px;left:6%;right:6%}.hero-copy h1{font-size:clamp(29px,8.35vw,42px);letter-spacing:-1.2px;margin:0 0 15px}.hero-copy p{font-size:14px;max-width:300px;line-height:1.8}.hero-link{margin-top:13px;font-size:12px;gap:24px}.truck-position{width:min(108%,55svh);bottom:21.7%;left:51%}.field-trees{bottom:27%}.field-clouds{opacity:.6}.field-sun{top:34%;right:7%;width:100px}.scene-toggle{left:6%;bottom:18px;font-size:11px;padding:10px 14px}.home-collection{padding:16px;gap:4px 16px}.home-collection .collection-count{font-size:36px}.home-collection .collection-count span{font-size:12px}.home-collection>p{font-size:10px}.home-collection .collection-caption{font-size:9px}}
+@media(max-width:550px) and (max-height:700px){.hero-copy{top:24px}.field-trees{--tree-span:850px}.field-sun{top:44%;width:80px;right:5%}}
+/* The still SVG is also the no-script and reduced-motion fallback. */
+@media(prefers-reduced-motion:reduce){.scene-running .scene-motion{animation:none!important}}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.collection-note,.module-card,.workbench,.pending-notice,.site-header,#module-tabs,.explode-rail,#toast{background:#f5faf3}.dark .collection-note,.dark .module-card,.dark .workbench,.dark .pending-notice,.dark .site-header,.dark #module-tabs,.dark .explode-rail,.dark #toast{background:#25422f}} /* taste-skill-ignore: Preserve the user-requested Liquid Glass surfaces and established green palette. */
+@media(prefers-reduced-transparency:reduce){.collection-note,.module-card,.workbench,.site-header,#module-tabs,.explode-rail,#toast{background:#f5faf3}.dark .collection-note,.dark .module-card,.dark .workbench,.dark .site-header,.dark #module-tabs,.dark .explode-rail,.dark #toast{background:#25422f}.scene-toggle{backdrop-filter:none;background:#f5faf3}} /* taste-skill-ignore: Preserve the user-requested Liquid Glass surfaces and established green palette. */
 .preview{background:transparent!important;background-image:none!important}

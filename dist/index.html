@@ -6,14 +6,94 @@
  <title>Home — Hệ thống xe thu gom rác</title>
  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='10' fill='%23183325'/%3E%3Cpath d='m10 13 10-5 10 5v14l-10 5-10-5Zm0 0 10 6 10-6M20 19v13' fill='none' stroke='%23247746' stroke-width='2'/%3E%3C/svg%3E">
  <link rel="stylesheet" href="./style.css"><link rel="stylesheet" href="./home.css"><link rel="stylesheet" href="./glass.css"><link rel="stylesheet" href="./nature.css">
- <script type="importmap">{"imports":{"three":"./vendor/three.module.js"}}</script>
 </head>
 <body class="home-page">
  <header class="site-header"><a class="brand" href="./" aria-label="MÔ HÌNH 3D ANATOMY — Home"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="m5 9 11-6 11 6v14l-11 6-11-6Zm0 0 11 6 11-6M16 15v14"/></svg><span>MÔ HÌNH 3D ANATOMY</span></a><nav class="home-nav" aria-label="Điều hướng chính"><a href="./" aria-current="page">Home</a><a href="./explorer.html?module=tong-quan">Tổng quan 3D <span>↗</span></a></nav><button id="theme" class="icon-button" aria-label="Chuyển giao diện tối" title="Đổi giao diện">◐</button></header>
+ <section class="home-hero" aria-labelledby="home-heading">
+  <div id="hero-scene" class="hero-scene scene-paused">
+   <div id="hero-scene-view" role="img" aria-label="Hoạt cảnh 2D: xe thu gom rác màu xanh chạy trên đường qua cánh đồng, hàng cây và ánh nắng">
+    <svg class="field-landscape" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+     <defs>
+      <linearGradient id="field-sky" x2="0" y2="1"><stop stop-color="#eef9f2"/><stop offset="1" stop-color="#e2f0db"/></linearGradient>
+      <radialGradient id="field-light"><stop stop-color="#fff9d5" stop-opacity=".8"/><stop offset="1" stop-color="#fff9d5" stop-opacity="0"/></radialGradient>
+     </defs>
+     <path fill="url(#field-sky)" d="M0 0h1600v900H0z"/>
+     <circle cx="1300" cy="150" r="240" fill="url(#field-light)"/>
+     <g class="field-clouds scene-motion" fill="#fff" opacity=".78">
+      <path d="M855 194c-28 0-28-30-5-32 1-30 44-39 59-12 26-5 37 18 19 33h-73z"/>
+      <path d="M1110 340c-27 0-34-29-10-35 9-33 54-38 70-8 25-6 45 22 21 35-3 4-72 8-81 8z"/>
+      <path d="M350 355c-22 0-29-23-7-31 6-27 44-29 55-7 24-8 39 15 23 30-9 8-57 8-71 8z"/>
+     </g>
+     <path fill="#c5dfa4" d="M0 530Q200 386 410 486T800 448T1230 468T1600 438v462H0z"/>
+     <path fill="#aaca80" d="M0 625Q205 477 430 549T825 530T1230 573T1600 525v375H0z"/>
+     <path fill="#90b76a" d="M0 672Q244 544 526 621T1040 611T1600 622v278H0z"/>
+     <path fill="#b6d68c" d="M0 718Q310 658 716 730T1600 680v220H0z"/>
+    </svg>
+    <svg class="field-sun" viewBox="0 0 220 220" aria-hidden="true">
+     <circle cx="110" cy="110" r="52" fill="#ffefb0"/>
+     <g class="sun-rays scene-motion" stroke="#ecda98" stroke-width="2" stroke-linecap="round" opacity=".65"><path d="M110 25V7m0 186v18m85-101h18m-188 0H7m143-60 13-13M50 170l-13 13m133-13 13 13M50 50 37 37"/></g>
+    </svg>
+    <svg class="field-trees scene-motion" viewBox="0 0 3200 300" aria-hidden="true">
+     <defs>
+      <g id="field-tree"><path d="m63 211 4-99h13l5 99" fill="#7b8052"/><path d="m74 154-24-28m25 14 22-29" fill="none" stroke="#7b8052" stroke-width="5" stroke-linecap="round"/><path d="M73 13c32-5 51 26 43 52 33 24 24 64-6 70-23 29-72 24-79-4C0 124-8 84 17 64 7 35 37 13 73 13z" fill="#4b8956"/><path d="M73 13c28-4 44 17 44 39-28 47-66 61-101 40C7 59 24 20 73 13z" fill="#76a967"/><path d="M43 26c21-11 54-10 66 14C87 37 65 46 48 64 24 74 20 53 43 26z" fill="#98bc79"/></g>
+      <g id="field-tree-row">
+       <use href="#field-tree" transform="translate(35 60) scale(.93)"/><use href="#field-tree" transform="translate(235 125) scale(.62)"/>
+       <use href="#field-tree" transform="translate(460 18) scale(1.12)"/><use href="#field-tree" transform="translate(770 77) scale(.88)"/>
+       <use href="#field-tree" transform="translate(990 109) scale(.70)"/><use href="#field-tree" transform="translate(1190 36) scale(1.04)"/>
+       <use href="#field-tree" transform="translate(1440 126) scale(.62)"/>
+      </g>
+     </defs>
+     <use href="#field-tree-row"/><use href="#field-tree-row" x="1600"/>
+    </svg>
+    <div class="field-road" aria-hidden="true"><div class="road-markings scene-motion"></div></div>
+    <div class="truck-position" aria-hidden="true">
+     <svg class="field-truck scene-motion" viewBox="0 0 700 300">
+      <defs>
+       <g id="truck-wheel"><circle r="36" fill="#283e34"/><circle r="25" fill="#405248"/><circle r="16" fill="#c1cbc0"/><path d="M0-15v30M-15 0h30m-11-11 22 22m-22 0 22-22" stroke="#87978a" stroke-width="3"/><circle r="6" fill="#eef3e7"/></g>
+      </defs>
+      <ellipse cx="353" cy="267" rx="288" ry="12" fill="#334a32" opacity=".17"/>
+      <g class="truck-body scene-motion">
+       <path d="M78 211h493v33H78z" fill="#354f3e"/>
+       <path d="m36 104 37-52 55 8-5 144H45l-18-36z" fill="#4c8c51" stroke="#2c693f" stroke-width="3" stroke-linejoin="round"/>
+       <path d="m41 110 36-44 30 5-4 43-60 34z" fill="#79ae65"/><path d="m42 157 53-31m-41 63 49-24" stroke="#306f42" stroke-width="5" stroke-linecap="round"/>
+       <path d="M118 54h316l31 26v134H113z" fill="#32854d" stroke="#276a3f" stroke-width="3" stroke-linejoin="round"/>
+       <path d="M118 54h316l31 26H130z" fill="#73a65f"/>
+       <path d="m138 63 303 1m-296 8h305" stroke="#478b4d" stroke-width="3"/>
+       <path d="M134 88h295v111H132z" fill="#479657"/>
+       <path d="M149 100v86m33-86v86m33-86v86m33-86v86m33-86v86m33-86v86m33-86v86m33-86v86m33-86v86" stroke="#36804b" stroke-width="3"/>
+       <path d="M119 80h318v130H117m319-127v130" fill="none" stroke="#2c7141" stroke-width="7"/>
+       <path d="M156 87h250" stroke="#a4c580" stroke-width="3" stroke-linecap="round" opacity=".7"/>
+       <path d="M445 94h12m-12 20h12m-12 20h12m-12 20h12m-12 20h12m-12 20h12" stroke="#6da568" stroke-width="4"/>
+       <path d="M210 205h74v10h-74z" fill="#c2d4a4"/>
+       <path d="M472 219V94q0-12 13-12h95q12 0 18 15l31 66v66H472z" fill="#f7faf0" stroke="#cad8c2" stroke-width="3" stroke-linejoin="round"/>
+       <path d="M484 94h83v123h-83z" fill="#edf3e4" stroke="#d4dfc9" stroke-width="2"/>
+       <path d="M496 103h60v58h-60z" fill="#9ebcaf"/><path d="m507 103 34 0-34 58h-11v-38z" fill="#c5d9c7"/>
+       <path d="M580 104h10l25 55h-35z" fill="#769c8d"/><path d="m580 104 12 2 17 38-29 10z" fill="#9dbbad"/>
+       <path d="M573 171h47v7h-47" fill="#dce7d2"/><path d="M585 183h39v19h-39z" fill="#446653"/>
+       <path d="M622 169h9v13h-9" fill="#f8dfa1"/><path d="M631 215h8v16h-28v-11" fill="#708574"/>
+       <path d="M538 174h16" stroke="#718d74" stroke-width="4" stroke-linecap="round"/>
+       <path d="M583 132h18v20h-9" fill="none" stroke="#557563" stroke-width="5" stroke-linecap="round"/>
+       <path d="M94 235a40 40 0 0 1 80 0m8 0a40 40 0 0 1 80 0m267 0a40 40 0 0 1 80 0" fill="#253d30"/>
+       <path d="M48 212h16v12H48" fill="#e4a37f"/><path d="M298 225h102" stroke="#879a76" stroke-width="7"/>
+      </g>
+      <g transform="translate(134 235)"><g class="truck-wheel scene-motion"><use href="#truck-wheel"/></g></g>
+      <g transform="translate(222 235)"><g class="truck-wheel scene-motion"><use href="#truck-wheel"/></g></g>
+      <g transform="translate(569 235)"><g class="truck-wheel scene-motion"><use href="#truck-wheel"/></g></g>
+     </svg>
+    </div>
+    <svg class="field-grass scene-motion" viewBox="0 0 3200 100" aria-hidden="true">
+     <defs><g id="field-grass-row" fill="none" stroke="#82aa62" stroke-width="3" stroke-linecap="round"><path d="m80 76-4-13m4 13 7-20m125 23-3-12m3 12 8-15m207 32-4-15m4 15 10-22m148 25-4-14m4 14 7-23m193 20-5-17m5 17 8-11m222 23-3-19m3 19 10-28m248 17-7-17m7 17 8-11m179 27-4-14m4 14 7-23"/></g></defs>
+     <use href="#field-grass-row"/><use href="#field-grass-row" x="1600"/>
+    </svg>
+   </div>
+   <div class="hero-copy"><h1 id="home-heading">Toàn cảnh chiếc xe.<br><span>Chi tiết từng cụm.</span></h1><p>Khám phá xe thu gom rác qua từng cụm 3D của bạn.</p><a class="hero-link" href="#catalog">Khám phá các cụm <span>↓</span></a></div>
+   <button id="scene-toggle" class="scene-toggle" hidden aria-pressed="false" aria-label="Tạm dừng cảnh xe chuyển động"><span aria-hidden="true">Ⅱ</span><span>Tạm dừng cảnh</span></button>
+  </div>
+ </section>
  <main>
- <section class="home-hero"><div class="hero-copy"><h1>Toàn cảnh chiếc xe.<br><span>Chi tiết từng cụm.</span></h1><p>Khám phá xe thu gom rác qua từng cụm 3D của bạn.</p><a class="hero-link" href="#catalog">Khám phá các cụm <span>↓</span></a></div><div class="hero-visual"><div id="hero-scene" class="hero-scene"><div id="hero-scene-view" role="img" aria-label="Mô hình xe thu gom rác chạy qua cánh đồng xanh, hàng cây và ánh nắng"><img src="./assets/hero/field-poster.png" alt="" width="1000" height="600" fetchpriority="high"></div><button id="scene-toggle" class="scene-toggle" disabled aria-pressed="false" aria-label="Tạm dừng cảnh xe chuyển động"><span aria-hidden="true">Ⅱ</span><span>Tạm dừng cảnh</span></button></div><div class="collection-note"><div class="collection-top"><span>THƯ VIỆN MÔ HÌNH</span><span class="status-dot"></span></div><div class="collection-count">04<span>/ 05</span></div><p>Mục đã có mô hình thực tế</p><div class="collection-track" aria-label="Bốn trong năm mục đã có mô hình"><span class="complete"></span><span class="complete"></span><span class="complete"></span><span class="complete"></span><span></span></div><div class="collection-caption">Bốn mục có mô hình thực tế.<br>Cặp nâng thùng rác đang chờ mô hình.</div></div></div></section>
- <section id="catalog" aria-labelledby="catalog-heading"><div class="catalog-heading"><div><span class="eyebrow">BỘ SƯU TẬP / 00—04</span><h2 id="catalog-heading">Tổng quan & các cụm</h2></div><p>Bấm vào một mục để xoay, tách lớp<br>và quan sát các bộ phận.</p></div><div id="module-cards" class="module-grid"><p class="muted" role="status">Đang mở thư viện mô hình…</p></div></section>
- <section class="home-how"><div class="how-title"><span class="eyebrow">BẮT ĐẦU KHÁM PHÁ</span><h2>Từ một góc nhìn<br>đến toàn bộ kết cấu.</h2></div><div class="how-step"><span class="step-number">01</span><h3>Chọn một cụm</h3><p>Mỗi mục mở một không gian 3D và danh sách chi tiết riêng.</p></div><div class="how-step"><span class="step-number">02</span><h3>Nhìn sâu vào bên trong</h3><p>Xoay mô hình, chọn một part hoặc ẩn các tấm vỏ để quan sát.</p></div><div class="how-step"><span class="step-number">03</span><h3>Tách lớp để hiểu cấu tạo</h3><p>Kéo thanh bung lắp ráp để thấy các bộ phận rõ ràng hơn.</p></div></section>
+ <div class="collection-note home-collection"><div class="collection-top"><span>THƯ VIỆN MÔ HÌNH</span><span class="status-dot"></span></div><div class="collection-count">04<span>/ 05</span></div><p>Mục đã có mô hình thực tế</p><div class="collection-track" aria-label="Bốn trong năm mục đã có mô hình"><span class="complete"></span><span class="complete"></span><span class="complete"></span><span class="complete"></span><span></span></div><div class="collection-caption">Bốn mục có mô hình thực tế.<br>Cặp nâng thùng rác đang chờ mô hình.</div></div> <!-- taste-skill-ignore: Retain the user-approved gallery labels, numbering and real 4/5 library count. -->
+ <section id="catalog" aria-labelledby="catalog-heading"><div class="catalog-heading"><div><span class="eyebrow">BỘ SƯU TẬP / 00—04</span><h2 id="catalog-heading">Tổng quan & các cụm</h2></div><p>Bấm vào một mục để xoay, tách lớp<br>và quan sát các bộ phận.</p></div><div id="module-cards" class="module-grid"><p class="muted" role="status">Đang mở thư viện mô hình…</p></div></section> <!-- taste-skill-ignore: Retain the user-approved gallery labels, numbering and real 4/5 library count. -->
+ <section class="home-how"><div class="how-title"><span class="eyebrow">BẮT ĐẦU KHÁM PHÁ</span><h2>Từ một góc nhìn<br>đến toàn bộ kết cấu.</h2></div><div class="how-step"><span class="step-number">01</span><h3>Chọn một cụm</h3><p>Mỗi mục mở một không gian 3D và danh sách chi tiết riêng.</p></div><div class="how-step"><span class="step-number">02</span><h3>Nhìn sâu vào bên trong</h3><p>Xoay mô hình, chọn một part hoặc ẩn các tấm vỏ để quan sát.</p></div><div class="how-step"><span class="step-number">03</span><h3>Tách lớp để hiểu cấu tạo</h3><p>Kéo thanh bung lắp ráp để thấy các bộ phận rõ ràng hơn.</p></div></section> <!-- taste-skill-ignore: Retain the user-approved gallery labels, numbering and real 4/5 library count. -->
  <footer><span>HỆ THỐNG XE THU GOM RÁC <span class="footer-sep">/</span> ENGINEERING EXPLORER</span><span>Cảm hứng từ <a href="https://github.com/wheresryan22/anatomy" target="_blank" rel="noopener noreferrer">Anatomy ↗</a></span><a href="#catalog">Trở lại bộ sưu tập ↑</a></footer>
  </main>
  <script type="module" src="./home.js"></script>
