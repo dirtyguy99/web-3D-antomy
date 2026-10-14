@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 300" aria-labelledby="title desc">
+ <title id="title">Xe thu gom rác — hình minh họa 2D</title>
+ <desc id="desc">Vẽ lại theo hình chiếu bên của bản lắp Full_09_10_2.SLDASM: cabin trắng, thùng chính xanh, cụm thùng phụ nghiêng và hai trục bánh.</desc>
+ <defs>
+  <g id="cad-wheel"><circle r="86.9" fill="#263d32"/><circle r="73" fill="#344b3d"/><circle r="45" fill="#1c352b"/><circle r="35" fill="#819680"/><circle r="27" fill="#aebda3"/><g stroke="#637e65" stroke-width="5"><path d="M0-32v64M-28-16l56 32m-56 0 56-32"/></g><circle r="13" fill="#647f65"/><g fill="#d7e2c9"><circle cy="-19" r="3"/><circle cx="16.5" cy="-9.5" r="3"/><circle cx="16.5" cy="9.5" r="3"/><circle cy="19" r="3"/><circle cx="-16.5" cy="9.5" r="3"/><circle cx="-16.5" cy="-9.5" r="3"/></g></g>
+ </defs>
+ <ellipse cx="352" cy="283" rx="294" ry="9" fill="#334a32" opacity=".17"/>
+ <!-- Uniformly scaled from the CAD side reference; front points to the right. -->
+ <g transform="translate(35 -12) scale(.45)">
+  <g class="truck-body scene-motion" stroke="#346941" stroke-linejoin="round">
+   <path d="M307 478h1016v42H307z" fill="#3b5945" stroke-width="3"/>
+   <path d="M320 482h302v30H320z" fill="#48684d" stroke-width="2"/>
+   <path d="m342 520 56 28h96l62-28" fill="none" stroke="#547357" stroke-width="8"/>
+   <path d="M333 80h145l27 19h461v373H297l-30 24h-7L434 80Z" fill="#39834b" stroke-width="4"/>
+   <path d="M505 99h441v341H319L478 101Z" fill="#4b9657" stroke="none"/>
+   <path d="M510 107h435" fill="none" stroke="#88b574" stroke-width="4"/>
+   <path d="M334 80h99l-28 26h-72L302 134" fill="#7aa36a" stroke-width="2"/>
+   <path d="M316 441h630v24H304Z" fill="#70a367" stroke-width="2"/>
+   <path d="M320 450h621" stroke="#a0c18a" stroke-width="3"/>
+   <path d="M946 100h20v373h-20z" fill="#387b48" stroke-width="3"/>
+   <path d="M967 216h18v26l19 12v65l-20 11h-17" fill="#4c8d56" stroke-width="3"/>
+   <circle cx="994" cy="288" r="6" fill="#76a366" stroke-width="2"/>
+   <path d="M967 441h31v33" fill="none" stroke-width="3"/>
+   <path d="M334 80h104L267 495h31v62H86v-41l-11-10v-20H65v-63H55c-1-66 28-122 57-155Z" fill="#709c5d" stroke-width="4"/>
+   <path d="M337 94h79L263 463l-76 57-109-89 33-107Z" fill="#7faa68" stroke-width="2"/>
+   <path d="m147 268 46 35 126-142-41-33M102 327l104 77m-126-22 106 81m42-222 117 87m-47-178 88 65" fill="none" stroke="#649254" stroke-width="5"/>
+   <path d="m391 102 16 10-22 28-19 5-179 382-110-86 8-17 96 76 184-363Z" fill="#739f60" stroke-width="3"/>
+   <path d="m250 52-12 0C168 100 122 169 111 257l14-13c15-79 54-139 113-178Z" fill="#6f9c5d" stroke-width="3"/>
+   <path d="m215 72 4 47 84 81 10-10-84-73-3-48" fill="#80a869" stroke-width="3"/>
+   <circle cx="221" cy="74" r="6" fill="#9eba80" stroke-width="2"/><circle cx="306" cy="195" r="6" fill="#9eba80" stroke-width="2"/>
+   <path d="m377 171 16-9 17 12 48-74 12 7-54 86-23-16-11 7Z" fill="#89ae72" stroke-width="3"/>
+   <circle cx="377" cy="171" r="5" fill="#a7c68d" stroke-width="2"/>
+   <path d="m479 76 10 0 18 40-18 9-30-21Z" fill="#6da060" stroke-width="3"/><circle cx="480" cy="88" r="5" fill="#e0ebcc" stroke-width="2"/>
+   <path d="M88 529h209v27H88z" fill="#638d50" stroke="none"/>
+   <path d="M1021 224l26-38q11-11 37-11h194q15 2 19 30l29 124 12 15 2 84-11 28 15 29-5 33h-111l-1-43q-17-46-77-46h-70l-10 17h-49Z" fill="#f7faf0" stroke="#c1d0b9" stroke-width="4"/>
+   <path d="M1021 228l22-38v245h-22Z" fill="#d3ddc6" stroke="none"/>
+   <path d="M1108 194q0-4 15-4h141q8 0 12 12l18 138v145h-67q-20-55-78-55h-41Z" fill="#eef4e5" stroke="#b5c7ad" stroke-width="3"/>
+   <path d="M1134 209q0-9 12-9h114l20 143q0 13-12 14l-124-29q-10-3-10-16Z" fill="#9ebfad" stroke="#84a18c" stroke-width="3"/>
+   <path d="M1146 207h74l-72 110-9-3v-93q0-14 7-14Z" fill="#c6dcc8" stroke="none"/>
+   <path d="M1144 328l120 29" fill="none" stroke="#ecf2e1" stroke-width="5"/>
+   <path d="m1296 201 11 1 25 130-29 3Z" fill="#9ab9a7" stroke="#b8cab1" stroke-width="3"/>
+   <path d="m1304 214 17 100-12 8" fill="none" stroke="#cee0cc" stroke-width="5"/>
+   <path d="M1122 356v62m8-59h145" stroke="#dbe5cf" stroke-width="3"/>
+   <path d="M1192 359h26" stroke="#78947a" stroke-width="5" stroke-linecap="round"/>
+   <path d="M1077 417h75q61 0 85 54" fill="none" stroke="#a7bd9f" stroke-width="5"/>
+   <path d="M1024 414h81" stroke="#fffef5" stroke-width="8"/>
+   <path d="M1228 491h103v22h-103z" fill="#d9e3cc" stroke="#b3c5a9" stroke-width="3"/>
+   <path d="m1295 351 29 13 9 72h-36" fill="#e1ebd4" stroke="#a3ba9e" stroke-width="3"/>
+   <path d="M1308 454q19 2 26 16l-1 23-22-8-7-21Z" fill="#f4e4b5" stroke="#a3b79a" stroke-width="3"/>
+   <path d="M1300 509h37" stroke="#708b73" stroke-width="4"/>
+   <path d="M1244 209v141" stroke="#718f76" stroke-width="5"/>
+   <rect x="1234" y="230" width="20" height="63" rx="7" fill="#e5edda" stroke="#93ad8e" stroke-width="3"/>
+   <rect x="1244" y="304" width="20" height="29" rx="7" fill="#dce8ce" stroke="#93ad8e" stroke-width="3"/>
+   <path d="M1228 209h13m9 135h12" fill="none" stroke="#819d7f" stroke-width="4"/>
+   <rect x="80" y="486" width="8" height="19" fill="#ddac7c" stroke="none"/>
+  </g>
+  <g transform="translate(452.7 561.5)"><g class="truck-wheel scene-motion" data-axle="rear"><use href="#cad-wheel"/></g></g>
+  <g transform="translate(1152.7 561.5)"><g class="truck-wheel scene-motion" data-axle="front"><use href="#cad-wheel"/></g></g>
+ </g>
+</svg>
