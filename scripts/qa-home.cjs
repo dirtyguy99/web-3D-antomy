@@ -10,7 +10,7 @@ assert.equal(await page.locator('.module-card.ready').count(),4);assert.equal(aw
 assert.equal(await page.locator('img').evaluateAll(images=>images.every(i=>i.complete&&i.naturalWidth>0)),true,'All five 3D thumbnails must load');
 const actualModels=new Set(['thung-phu','thung-chinh','than-xe','tong-quan']);
 for(const [id,count] of [['tong-quan',428],['thung-phu',122],['thung-chinh',74],['than-xe',211],['cap-nang',44]]){
- await page.locator(`a.card-link[href*="module=${id}"]`).click();await page.waitForFunction(()=>window.modelExplorer);assert.equal(await page.evaluate(()=>window.modelExplorer.getState().meshCount),count);assert.equal(await page.locator('#module-switch').inputValue(),id);
+ await page.locator(`a.card-link[href*="module=${id}"]`).click();await page.waitForFunction(()=>window.modelExplorer);assert.equal(await page.evaluate(()=>window.modelExplorer.getState().meshCount),count);assert.equal(await page.locator('.site-nav [aria-current="page"]').getAttribute('data-module'),id);
  assert.equal(await page.locator('#pending-notice').isVisible(),!actualModels.has(id));
  if(!actualModels.has(id))assert.equal(await page.locator('#stat-size').textContent(),'Chờ dữ liệu CAD');
  if(id==='thung-chinh'){assert.equal(await page.locator('#source-note').isVisible(),true);assert.match(await page.locator('#source-note').textContent(),/Trụ bàn xả/);assert.equal(await page.locator('#source-file').textContent(),'THUNG CHINH.step');}
@@ -21,7 +21,7 @@ for(const [id,count] of [['tong-quan',428],['thung-phu',122],['thung-chinh',74],
  await page.screenshot({path:`qa/${id}-mobile.png`,fullPage:true});
  await page.locator('.back-home').click();await page.waitForFunction(()=>document.querySelectorAll('.module-card').length===5);assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,'Home mobile overflow');await page.setViewportSize({width:1440,height:1050});
 }
-await page.goto(base+'/explorer.html?module=thung-phu');await page.waitForFunction(()=>window.modelExplorer);await page.locator('#module-switch').selectOption('cap-nang');await page.waitForURL('**module=cap-nang');await page.waitForFunction(()=>window.modelExplorer);assert.equal(await page.locator('#module-title').textContent(),'Cặp nâng thùng rác.');
+await page.goto(base+'/explorer.html?module=thung-phu');await page.waitForFunction(()=>window.modelExplorer);await page.locator('.site-nav a[data-module="cap-nang"]').click();await page.waitForURL('**module=cap-nang');await page.waitForFunction(()=>window.modelExplorer);assert.equal(await page.locator('#module-title').textContent(),'Cặp nâng thùng rác.');
 await page.goto(base);await page.waitForFunction(()=>document.querySelectorAll('.module-card').length===5);await page.locator('#theme').click();assert.equal(await page.locator('body').evaluate(b=>b.classList.contains('dark')),true);await page.screenshot({path:'qa/home-dark.png',fullPage:true});
 assert.deepEqual(errors,[]);await browser.close();console.log('PASS: Home cards, thumbnails, all five routes, actual/pending labels, selection, isolate, reset, explode, Home links, module switch, dark theme, phone overflow; no browser errors.');
 })().catch(e=>{console.error(e);process.exit(1)});

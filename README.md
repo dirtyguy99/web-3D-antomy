@@ -1,6 +1,8 @@
 # MÔ HÌNH 3D XE ÉP RÁC
 
-Trang Home có năm mục: **Tổng quan về xe**, **Thùng phụ**, **Thùng chính**, **Thân xe**, **Cặp nâng thùng rác**. Mỗi mục chiếm một hàng riêng với ảnh 3D và phần mô tả, ảnh luân phiên trái/phải khi xem trên máy tính. Trên điện thoại, ảnh nằm trên mô tả. Bấm vào mục để mở trình xem tương ứng. Menu Home có thêm liên kết trực tiếp đến Thùng phụ và Thùng chính, cạnh Home và Tổng quan 3D. Phong cách trình bày tham khảo [Anatomy](https://github.com/wheresryan22/anatomy).
+Trang Home có năm mục: **Tổng quan về xe**, **Thùng phụ**, **Thùng chính**, **Thân xe**, **Cặp nâng thùng rác**. Mỗi mục chiếm một hàng riêng với ảnh 3D và phần mô tả, ảnh luân phiên trái/phải khi xem trên máy tính. Trên điện thoại, ảnh nằm trên mô tả. Bấm vào mục để mở trình xem tương ứng. Phong cách trình bày tham khảo [Anatomy](https://github.com/wheresryan22/anatomy).
+
+Home và mọi trang 3D dùng chung menu **Home, Tổng quan 3D, Thùng phụ, Thùng chính, Thân xe, Cặp nâng thùng rác**. `dist/site-header.js` lấy các mục từ danh mục chung và đánh dấu trang đang mở; `dist/site-header.css` giữ cùng kiểu trình bày, xếp menu thành hai hàng trên điện thoại. Biểu tượng cạnh tên website và favicon là xe ép rác vẽ bằng SVG, hỗ trợ cả nền sáng và tối. Các liên kết cũng nằm sẵn trong HTML để vẫn truy cập được khi JavaScript chưa chạy. Chạy `node scripts/qa-site-header.cjs` để kiểm tra menu, logo, trang đang chọn, thao tác bàn phím, liên kết thân xe/cặp nâng và bố cục ở năm chiều rộng.
 
 Chủ đề **Liquid Glass** được áp dụng qua `dist/glass.css` cho các mục mô hình và trình xem. Các bề mặt kính có chế độ sáng/tối, nền mờ, viền phản sáng và màu xanh cho thao tác chọn. Trình duyệt không hỗ trợ `backdrop-filter` hoặc bật giảm độ trong suốt sẽ dùng nền đặc dễ đọc. `dist/home-showcase.css` quản lý bố cục Home tràn viền và các hàng mô hình so le; phần chữ nằm phía trên ánh phản chiếu để luôn rõ khi di chuột.
 

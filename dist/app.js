@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import {modules,moduleUrl} from './catalog.js';
+import {modules} from './catalog.js';
 import {mountNavigation,componentLink} from './navigation.js';
 import {readTheme,saveTheme} from './theme.js';
 import {OrbitControls} from './vendor/OrbitControls.js';
@@ -89,8 +89,6 @@ function configureModule(){
  $('module-intro').innerHTML='<p>'+esc(module.description)+'</p><div class="source-tag"><span class="status-dot"></span>'+module.previewLabel+'</div>';
  $('figure-title').innerHTML='FIG. '+module.number+' <span>/</span> '+esc(module.title.toUpperCase());
  $('figure-status').innerHTML='<span class="status-dot"></span> '+(module.ready?'3D TƯƠNG TÁC':'MINH HỌA 3D');
- $('module-switch').innerHTML=modules.map(m=>'<option value="'+m.id+'" '+(m.id===module.id?'selected':'')+'>'+m.title+'</option>').join('');
- $('module-switch').onchange=e=>location.href=moduleUrl(e.target.value);
  $('source-file').textContent=module.ready?'ban test thung phu.STEP':'Chờ mô hình của bạn';
  $('footer-module').textContent=module.title.toUpperCase()+' / ENGINEERING EXPLORER';
  if(!module.ready){

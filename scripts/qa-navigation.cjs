@@ -2,7 +2,7 @@ const assert=require('node:assert/strict');
 let playwright;try{playwright=require('playwright')}catch{playwright=require(process.env.PLAYWRIGHT_MODULE||'C:/Users/HP/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright')}
 (async()=>{
 const browser=await playwright.chromium.launch({executablePath:process.env.CHROME_PATH||'C:/Program Files/Google/Chrome/Application/chrome.exe',headless:true,args:['--enable-webgl','--ignore-gpu-blocklist','--use-angle=swiftshader']});const page=await browser.newPage({viewport:{width:1440,height:1050},reducedMotion:'reduce'});const errors=[];page.on('pageerror',e=>errors.push(e.message));
-const base=process.env.TEST_URL||'http://localhost:4173';const ready=()=>page.waitForFunction(()=>window.modelExplorer);const current=()=>page.locator('#module-switch').inputValue();
+const base=process.env.TEST_URL||'http://localhost:4173';const ready=()=>page.waitForFunction(()=>window.modelExplorer);const current=()=>page.locator('.site-nav [aria-current="page"]').getAttribute('data-module');
 await page.goto(base+'/explorer.html?module=tong-quan');await ready();assert.equal(await page.locator('.module-tab').count(),5);assert.equal(await page.locator('.module-tab[aria-current="page"]').count(),1);
 assert.equal(await page.locator('#pending-notice').isVisible(),false);assert.notEqual(await page.locator('#stat-size').textContent(),'Chờ dữ liệu CAD');assert.equal(await page.locator('.group-select').count(),3);
 assert.equal(await page.evaluate(()=>window.modelExplorer.data.illustrative),false);assert.equal(await page.evaluate(()=>window.modelExplorer.getState().visible),426);

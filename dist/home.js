@@ -1,5 +1,7 @@
 import {modules,moduleUrl} from './catalog.js';
 import {readTheme,saveTheme} from './theme.js';
+import {mountSiteNavigation} from './site-header.js';
+mountSiteNavigation();
 document.body.classList.toggle('dark',readTheme());
 const readyCount=modules.filter(m=>m.ready).length;
 document.querySelector('.collection-count').innerHTML=String(readyCount).padStart(2,'0')+'<span>/ '+String(modules.length).padStart(2,'0')+'</span>'; // taste-skill-ignore: Keep the established real 04/05 model library count.

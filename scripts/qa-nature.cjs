@@ -13,7 +13,7 @@ const fs=require('node:fs');
   assert.equal(await page.locator('body').evaluate(e=>e.classList.contains('dark')),false);
   assert.equal(await page.locator('.module-card.ready').count(),4);assert.equal(await page.locator('.module-card.pending').count(),1);
   assert.equal(await page.locator('.brand span').textContent(),'MÔ HÌNH 3D XE ÉP RÁC');
-  assert.deepEqual(await page.locator('.home-nav a').allTextContents(),['Home','Tổng quan 3D','Thùng phụ','Thùng chính']);
+  assert.deepEqual(await page.locator('.site-nav a').allTextContents(),['Home','Tổng quan 3D','Thùng phụ','Thùng chính','Thân xe','Cặp nâng thùng rác']);
   assert.equal(await page.locator('#scene-toggle').textContent(),'');assert.ok(await page.locator('#scene-toggle').getAttribute('aria-label'));
   assert.equal(await page.evaluate(()=>window.homeDrive.getState().dimension),'2d');assert.equal(await page.locator('#hero-scene canvas').count(),0);
   const cad=JSON.parse(fs.readFileSync('dist/assets/cad/tong-quan.json'));
@@ -32,7 +32,7 @@ const fs=require('node:fs');
   for(const [width,height] of [[1920,1080],[1920,900],[1440,1000],[1440,768],[1280,720],[768,1024],[390,844],[320,740],[390,640]]){
    await page.setViewportSize({width,height});await page.waitForTimeout(200);
    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
-   const scene=await page.locator('#hero-scene').boundingBox();assert.ok(scene.width>width*.94,`Scene must span nearly the full width at ${width}`);assert.ok(scene.height>height*.80||scene.height>height-140,`Scene must fill most of the screen at ${width}x${height}`);
+   const scene=await page.locator('#hero-scene').boundingBox(),header=await page.locator('.site-header').boundingBox();assert.ok(scene.width>width*.94,`Scene must span nearly the full width at ${width}`);assert.ok(scene.height>=height-header.height-1,`Scene must fill the available screen at ${width}x${height}`);
    assert.ok(Math.abs(scene.x)<1&&Math.abs(scene.width-width)<1,`Scene must reach both edges at ${width}`);assert.equal(await page.locator('#hero-scene').evaluate(e=>getComputedStyle(e).borderRadius),'0px');
    const rows=await page.locator('.module-row').evaluateAll(items=>items.map(e=>{
     const row=e.getBoundingClientRect(),image=e.querySelector('.card-visual').getBoundingClientRect(),copy=e.querySelector('.card-content').getBoundingClientRect();
@@ -44,7 +44,7 @@ const fs=require('node:fs');
     if(width>800)assert.ok(i%2?rows[i].image.x>rows[i].copy.x:rows[i].image.x<rows[i].copy.x,'Images must alternate left/right');
     else assert.ok(rows[i].image.y<rows[i].copy.y,'Phone sections must place the image above its description');
    }
-   const nav=await page.locator('.home-nav a').evaluateAll(items=>items.map(e=>{const r=e.getBoundingClientRect();return{left:r.left,right:r.right,height:r.height}}));for(const link of nav){assert.ok(link.left>=0&&link.right<=width&&link.height>=44,'All four menu links must fit and be easy to tap');}
+   const nav=await page.locator('.site-nav a').evaluateAll(items=>items.map(e=>{const r=e.getBoundingClientRect();return{left:r.left,right:r.right,height:r.height}}));for(const link of nav){assert.ok(link.left>=0&&link.right<=width&&link.height>=44,'All six menu links must fit and be easy to tap');}
    const lines=await page.locator('h1').evaluate(e=>e.getBoundingClientRect().height/parseFloat(getComputedStyle(e).lineHeight));assert.ok(lines<2.2,`Headline must fit two lines at ${width}`);
    const copy=await page.locator('.hero-copy').boundingBox(),truck=await page.locator('.truck-position').boundingBox();assert.ok(truck.y>copy.y+copy.height+10,`Truck and text must not overlap at ${width}`);
    const button=await page.locator('#scene-toggle').boundingBox();assert.ok(button.y+button.height<height,`Pause must be on the first screen at ${width}`);
@@ -67,6 +67,6 @@ const fs=require('node:fs');
   await page.locator('#catalog').scrollIntoViewIfNeeded();await page.waitForFunction(()=>!window.homeDrive.getState().inView);await page.waitForTimeout(80);const offscreen=await transforms();await page.waitForTimeout(300);assert.deepEqual(await transforms(),offscreen,'Offscreen animation must freeze');
   await page.emulateMedia({reducedMotion:'reduce'});await page.goto(base);await page.waitForFunction(()=>window.homeDrive?.getState().ready);assert.equal(await page.evaluate(()=>window.homeDrive.getState().running),false);assert.equal(await page.locator('.scene-motion').evaluateAll(items=>items.every(e=>getComputedStyle(e).animationName==='none')),true);await page.screenshot({path:'qa/drive-2d-reduced.png'});
   const still=await browser.newPage({javaScriptEnabled:false,viewport:{width:390,height:844}});await still.route('https://fonts.googleapis.com/**',r=>r.abort());await still.route('https://fonts.gstatic.com/**',r=>r.abort());await still.goto(base);assert.ok(await still.locator('.field-truck').isVisible());assert.equal(await still.locator('.scene-motion').evaluateAll(items=>items.every(e=>getComputedStyle(e).animationPlayState==='paused')),true);await still.screenshot({path:'qa/drive-2d-no-script.png'});await still.close();
-  assert.deepEqual(errors,[]);console.log('PASS: full-bleed 2D scene, icon-only pause/resume, renamed brand, four usable menu links, five separate alternating sections at nine viewport sizes, real main/auxiliary hopper routes, motion/fallbacks, floating theme and unchanged CAD controls.');
+  assert.deepEqual(errors,[]);console.log('PASS: full-bleed 2D scene, icon-only pause/resume, truck brand, six usable menu links, five separate alternating sections at nine viewport sizes, real main/auxiliary hopper routes, motion/fallbacks, floating theme and unchanged CAD controls.');
  }finally{await browser.close()}
 })().catch(e=>{console.error(e);process.exit(1)});
