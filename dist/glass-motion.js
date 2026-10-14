@@ -12,7 +12,7 @@ function initGlassMotion(){
   running.add(animation);animation.finished.catch(()=>{}).finally(()=>running.delete(animation));
   return animation;
  }
- const surfaces=[...document.querySelectorAll('.collection-note,.module-card,.module-tabs,.workbench')];
+ const surfaces=[...document.querySelectorAll('.collection-note,.module-card,.module-tabs,.workbench,.explode-rail')];
  for(const surface of surfaces){
   surface.classList.add('glass-reflective');
   const sheen=document.createElement('span');sheen.className='glass-sheen';sheen.setAttribute('aria-hidden','true');
